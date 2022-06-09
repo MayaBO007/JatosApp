@@ -1,12 +1,11 @@
-import reset_airplane from "../functions/restAirplane.js";
-import reset_blueCar from "../functions/restBlue.js";
-import reset_redCar from "../functions/restRed.js";
-//import randColor from "../functions/randomColor.js";
+// import reset_airplane from "../functions/restAirplane.js";
+// import reset_blueCar from "../functions/restBlue.js";
+// import reset_redCar from "../functions/restRed.js";
+// //import randColor from "../functions/randomColor.js";
 
 
 const correctRedPressDevtest = [];
 const correctBluePressDevtest = [];
-export { correctRedPressDevtest, correctBluePressDevtest };
 const incorrectRedPressDevtest = [];
 const incorrectBluePressDevtest = [];
 const redChoiceDev = [];
@@ -23,7 +22,7 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePressesDev.push(now);
 });
 
-let now = null;
+//let now = null;
 // Time count function:
 function msCount() {
     setInterval(function setTimer() {
@@ -44,10 +43,10 @@ function randColor() {
     return car
 };
 
-let count = 0; // counter for iterations
-// 1=red, 2=blue buttons
-let buttonChoice = null;
-let sessionInterval = null;
+// let count = 0; // counter for iterations
+// // 1=red, 2=blue buttons
+// let buttonChoice = null;
+// let sessionInterval = null;
 function startIntervalDevtest() {
     sessionInterval = setInterval(function carMove() {
         let choseCar = randColor();
@@ -106,7 +105,7 @@ function startIntervalDevtest() {
 };
 
 let startClickDev = null;
-export default function startDevTest() {
+function startDevTest() {
     document.getElementById("redButton").style.display = "inline";
     document.getElementById("blueButton").style.display = "inline";
     document.getElementById("gameScreen").style.display = "inline";

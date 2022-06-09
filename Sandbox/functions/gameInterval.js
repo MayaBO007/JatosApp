@@ -1,22 +1,34 @@
-import reset_airplane from "./restAirplane.js";
-import reset_blueCar from "./restBlue.js";
-import reset_redCar from "./restRed.js";
-//import randColor from "./randomColor.js";
-import startTimer from "./timerPointes.js";
+// import reset_airplane from "./restAirplane.js";
+// import reset_blueCar from "./restBlue.js";
+// import reset_redCar from "./restRed.js";
+// //import randColor from "./randomColor.js";
+// import startTimer from "./timerPointes.js";
 
-const correctRedPress = [];
-const correctBluePress = [];
-export { correctRedPress, correctBluePress };
-const incorrectRedPress = [];
-const incorrectBluePress = [];
-const redChoice = [];
-const blueChoice = [];
-export { redChoice, blueChoice };
-const allRedPresses = [];
-const allBluePresses = [];
-const allCorrectFirstPress = [];
-const allChoices = [];
+// const correctRedPress = [];
+// const correctBluePress = [];
+// const incorrectRedPress = [];
+// const incorrectBluePress = [];
+// const redChoice = [];
+// const blueChoice = [];
+// const allRedPresses = [];
+// const allBluePresses = [];
+// const allCorrectFirstPress = [];
+// const allChoices = [];
 
+const saveResponses = {
+    correctRedPress: correctRedPress,
+    correctBluePress: correctBluePress,
+    incorrectRedPress: incorrectRedPress,
+    incorrectBluePress: incorrectBluePress,
+    redChoice: redChoice,
+    blueChoice: blueChoice,
+    allRedPresses: allRedPresses,
+    allBluePresses: allBluePresses,
+    allCorrectFirstPress: allCorrectFirstPress,
+    allChoices: allChoices
+};
+
+//jatos.submitResultData(saveResponses);
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
 
@@ -27,7 +39,7 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
 
-let now = null;
+//let now = null;
 //let binaryPress = null;
 // Time count function:
 function msCount() {
@@ -51,10 +63,10 @@ function randColor() {
     return car
 };
 
-let count = 0; // counter for iterations
+//let count = 0; // counter for iterations
 // 1=red, 2=blue buttons
-let buttonChoice = null;
-let sessionInterval = null;
+// let buttonChoice = null;
+// let sessionInterval = null;
 
 function startInterval() {
     sessionInterval = setInterval(function carMove() {
@@ -114,7 +126,7 @@ function startInterval() {
 };
 
 let startClick = null;
-export default function startTraining() {
+function startTraining() {
     document.getElementById("ins1").style.display = "none";
     document.getElementById("startButton").style.display = "inline";
     document.getElementById("redButton").style.display = "inline";

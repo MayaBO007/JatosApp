@@ -1,9 +1,5 @@
-import { correctRedPress, correctBluePress } from "./gameInterval.js";
 
-
-
-
-export default function startTimer() {
+function startTimer() {
     let todayHeb = ":היום הרווחת";
     let redCoinsHeb = ":מטבעות אדומים";
     let blueCoinsHeb = ":מטבעות כחולים";

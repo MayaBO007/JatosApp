@@ -1,19 +1,17 @@
-import reset_airplane from "./restAirplane.js";
-import reset_blueCar from "./restBlue.js";
-import reset_redCar from "./restRed.js";
-//import randColor from "./randomColor.js";
-//import startTimer from "./timerPointes.js";
-import startInstructions from "./instructions.js";
-import demo from "./Demo.js";
+// import reset_airplane from "./restAirplane.js";
+// import reset_blueCar from "./restBlue.js";
+// import reset_redCar from "./restRed.js";
+// //import randColor from "./randomColor.js";
+// //import startTimer from "./timerPointes.js";
+// import startInstructions from "./instructions.js";
+// import demo from "./Demo.js";
 
 const correctRedPress = [];
 const correctBluePress = [];
-export { correctRedPress, correctBluePress };
 const incorrectRedPress = [];
 const incorrectBluePress = [];
 const redChoice = [];
 const blueChoice = [];
-export { redChoice, blueChoice };
 const allRedPresses = [];
 const allBluePresses = [];
 const allCorrectFirstPress = [];
@@ -129,7 +127,7 @@ function startInterval() {
 //let nextClick = null;
 let demoClick = null;
 let qClick = null;
-export default function startFirstDay() {
+function startFirstDay() {
 
     let goOn = async function () {
         let isDone = await startInstructions();
@@ -155,7 +153,7 @@ export default function startFirstDay() {
                             document.getElementById("qStart").onclick = function () {
                                 qClick = 1;
                                 if (qClick == 1) {
-                                    window.open("Sandbox/functions/questions/Multiple-Choice-Quiz-JavaScript-master/index.html");
+                                    window.open("/questions/Multiple-Choice-Quiz-JavaScript-master/index.html");
                                 }
                             }
 

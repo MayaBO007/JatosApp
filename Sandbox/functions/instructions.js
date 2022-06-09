@@ -4,7 +4,7 @@ let nextClick = null;
 
 let noDisturb = null;
 let noDisturbBack = null;
-export default async function startInstructions() {
+async function startInstructions() {
     return new Promise(resolve => {
         document.getElementById("ins1").style.display = "inline";
         setTimeout(function () {

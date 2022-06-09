@@ -111,10 +111,10 @@
 
 #redButton {
     position: absolute;
-    left: 10%;
-    top: 46.5%;
-    width: 8%;
-    height: 15%;
+    left: 1%;
+    top: 35%;
+    width: 18%;
+    height: 30%;
     border: none;
     color: none;
     background-color: transparent;
@@ -127,10 +127,10 @@
 
 #blueButton {
     position: absolute;
-    left: 83%;
-    top: 46.5%;
-    width: 8%;
-    height: 15%;
+    left: 81%;
+    top: 35%;
+    width: 18%;
+    height: 30%;
     border: none;
     color: none;
     background-color: transparent;
@@ -143,7 +143,7 @@
 
 #gameScreen {
     /*background-image: url('road2.png'), url("desert.png");*/
-    background-image: url('/Sandbox/pics/road.png');
+    background-image: url('./pics/road.png');
     height: 100%;
     left: 20%;
     background-position: center;

@@ -5,7 +5,7 @@ let redPressDemo = null;
 let bluePressDemo = null;
 let mistakeDemo = null;
 
-export default async function demo() {
+async function demo() {
     return new Promise(resolve => {
         document.getElementById("redCar").style.display = "inline";
         document.getElementById("redCar").style.animationPlayState = "running";

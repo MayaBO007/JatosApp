@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Maya's Sandbox</title>
         <link href='style.css' rel='stylesheet'>
+        <!-- <script src="jatos.js"></script> -->
         <style>
                 canvas {
                         border: 1px solid black;
@@ -77,15 +78,15 @@
 
         <div>
                 <a href="https://support.apple.com/he-il/guide/iphone/iph5c3f5b77b/ios" ; target="_blank"> <img
-                                src="/Sandbox/pics/Instructions/Iphone.png" ; id="iphone"> </a>
+                                src="./pics/Instructions/Iphone.png" ; id="iphone"> </a>
                 <a href="https://support.google.com/android/answer/9069335?hl=iw" target="_blank"> <img
-                                src="/Sandbox/pics/Instructions/notIphone.png" ; id="notIphone"> </a>
+                                src="./pics/Instructions/notIphone.png" ; id="notIphone"> </a>
         </div>
 
         <div>
                 <img id="redCar" src="/Sandbox/pics/redCar.png">
                 <img id="blueCar" src="/Sandbox/pics/blueCar.png">
-                <img id="yellowCar" src="/Sandbox//pics/yellowCar.png">
+                <img id="yellowCar" src="/Sandbox/pics/yellowCar.png">
                 <img id="airplane" src="/Sandbox/pics/airplane.png">
                 <!--  <img id="endOfDayButton" src="/Sandbox/pics/endOfDayButton.png">-->
                 <img id="ins1" ; src="/Sandbox/pics/Instructions/1.png">
@@ -115,6 +116,52 @@
                                 <h2 id="blueWins"><br>
                                         <h2 id="seeYouTomorrow"></h2>
         </div>
+        <script src="./functions/firstDay.js"></script>
+        <script src="./functions/gameInterval.js"></script>
+        <script src="./functions/instructions.js"></script>
+        <script src="./functions/randomColor.js"></script>
+        <script src="./functions/randomColorYellow.js"></script>
+        <script src="./functions/restAirplane.js"></script>
+        <script src="./functions/restBlue.js"></script>
+        <script src="./functions/restRed.js"></script>
+        <script src="./functions/restYellow.js"></script>
+        <script src="./functions/Demo.js"></script>
+        <script src="./functions/timerPointes.js"></script>
+        <script src="./functions/helpers.js"></script>
+        <script src="./Tests/devTest.js"></script>
+        <script src="./Tests/switchButtonsTest.js"></script>
+        <script src="./Tests/yellowCarInterval.js"></script>
+        <script>
+                /*
+                $(document).ready(function () {
+
+                        jatos.onLoad(function () {
+
+                                (async () => {
+                                        // make sure all images were appropriately loaded:
+                                        // ********************************************************
+                                        await Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = resolve; }))).then(() => {
+                                                console.log('images finished loading');
+                                        });
+                                        if (!!Array.from(document.images).filter(img => img.naturalHeight === 0).length) { // check that all images were successfully loaded - detects if there was an error in loading an image
+                                                console.log('Problem in image loading');
+                                                alert('היתה בעיה בטעינה. פנה/י למאיה בטלפון או במייל לעזרה. תודה')
+                                                return
+                                        }
+
+                                });
+                        })
+                });*/
+
+                window.onbeforeunload = (function () {
+                        var msg = "חשוב לסיים את המשחק ברצף, "
+                                + "לא ניתן להתחיל שוב מההתחלה באותו היום. "
+                                + "אם תטען.י מחדש את הדפדפן או תסגור/תסגרי אותו "
+                                + "הניסוי לא יהיה תקף והמידע בנוגע למטבעות שצברת לא יישמר ";
+                        return msg;
+                });
+
+        </script>
 </body>
 
 </html>

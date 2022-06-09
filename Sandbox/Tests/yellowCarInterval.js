@@ -1,11 +1,10 @@
-import reset_blueCar from "../functions/restBlue.js";
-import reset_redCar from "../functions/restRed.js";
-//import randColorYellow from "../functions/randomColorYellow.js";
-import reset_yellowCar from "../functions/restYellow.js";
+// import reset_blueCar from "../functions/restBlue.js";
+// import reset_redCar from "../functions/restRed.js";
+// //import randColorYellow from "../functions/randomColorYellow.js";
+// import reset_yellowCar from "../functions/restYellow.js";
 
 const correctRedPressYellow = [];
 const correctBluePressYellow = [];
-export { correctRedPressYellow, correctBluePressYellow };
 const incorrectRedPressYellow = [];
 const incorrectBluePressYellow = [];
 const redChoiceYellow = [];
@@ -24,7 +23,7 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePressesYellow.push(now);
 });
 
-let now = null;
+//let now = null;
 // Time count function:
 function msCount() {
     setInterval(function setTimer() {
@@ -48,11 +47,11 @@ function randColorYellow() {
     return car
 };
 
-let count = 0; // counter for iterations
+//let count = 0; // counter for iterations
 // 1=red, 2=blue
-let buttonChoice = null;
-let sessionInterval = null;
-let carNum = null;
+// let buttonChoice = null;
+// let sessionInterval = null;
+// let carNum = null;
 
 function startIntervalYellow() {
     sessionInterval = setInterval(function carMove() {
@@ -113,7 +112,7 @@ function startIntervalYellow() {
 };
 
 let startClickYellow = null;
-export default function startYellowTest() {
+function startYellowTest() {
     document.getElementById("redButton").style.display = "inline";
     document.getElementById("blueButton").style.display = "inline";
     document.getElementById("gameScreen").style.display = "inline";
