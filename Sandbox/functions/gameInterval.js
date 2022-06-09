@@ -17,6 +17,20 @@ const allBluePresses = [];
 const allCorrectFirstPress = [];
 const allChoices = [];
 
+const saveResponses = {
+    correctRedPress: correctRedPress,
+    correctBluePress: correctBluePress,
+    incorrectRedPress: incorrectRedPress,
+    incorrectBluePress: incorrectBluePress,
+    redChoice: redChoice,
+    blueChoice: blueChoice,
+    allRedPresses: allRedPresses,
+    allBluePresses: allBluePresses,
+    allCorrectFirstPress: allCorrectFirstPress,
+    allChoices: allChoices
+};
+
+//jatos.submitResultData(saveResponses);
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
 

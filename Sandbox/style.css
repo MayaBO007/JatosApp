@@ -143,7 +143,7 @@
 
 #gameScreen {
     /*background-image: url('road2.png'), url("desert.png");*/
-    background-image: url('/Sandbox/pics/road.png');
+    background-image: url('./pics/road.png');
     height: 100%;
     left: 20%;
     background-position: center;
