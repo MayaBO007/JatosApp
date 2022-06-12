@@ -7,7 +7,7 @@ function startTimer() {
 
     let time = null;
     let sessionTimer = setInterval(function timeCount() {
-        if (time >= 3) {
+        if (time >= 100) {
             document.getElementById("blueButton").style.display = "none";
             document.getElementById("redButton").style.display = "none";
             clearInterval(sessionTimer);
@@ -23,4 +23,11 @@ function startTimer() {
             time++;
         }
     }, 1000);
+};
+
+let now = null;
+function msCount() {
+    setInterval(function setTimer() {
+        now = now + 10;
+    }, 10);
 };

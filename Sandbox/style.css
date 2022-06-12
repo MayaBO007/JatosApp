@@ -114,7 +114,7 @@
     left: 1%;
     top: 35%;
     width: 18%;
-    height: 30%;
+    height: 34%;
     border: none;
     color: none;
     background-color: transparent;
@@ -130,7 +130,7 @@
     left: 81%;
     top: 35%;
     width: 18%;
-    height: 30%;
+    height: 34%;
     border: none;
     color: none;
     background-color: transparent;
@@ -163,8 +163,7 @@
     animation-play-state: paused;
     position: absolute;
     animation-name: blueCarMoving;
-    animation-duration: 1s;
-    animation-fill-mode: initial;
+    animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     display: none;
     /*animation-iteration-count: infinite;
@@ -173,11 +172,11 @@
 
 @keyframes blueCarMoving {
     from {
-        top: 60pc
+        top: 130%
     }
 
     to {
-        top: -50pc
+        top: -30%
     }
 
     ;
@@ -192,19 +191,18 @@
     animation-play-state: paused;
     position: absolute;
     animation-name: redCarMoving;
-    animation-duration: 1s;
-    animation-fill-mode: initial;
+    animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     display: none;
 }
 
 @keyframes redCarMoving {
     from {
-        top: 60pc
+        top: 130%
     }
 
     to {
-        top: -50pc
+        top: -30%
     }
 
     ;

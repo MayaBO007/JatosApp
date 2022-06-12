@@ -1,11 +1,3 @@
-// import reset_airplane from "./restAirplane.js";
-// import reset_blueCar from "./restBlue.js";
-// import reset_redCar from "./restRed.js";
-// //import randColor from "./randomColor.js";
-// //import startTimer from "./timerPointes.js";
-// import startInstructions from "./instructions.js";
-// import demo from "./Demo.js";
-
 const correctRedPress = [];
 const correctBluePress = [];
 const incorrectRedPress = [];
@@ -27,7 +19,7 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
 
-let now = null;
+
 let binaryPress = [];
 // Time count function:
 function msCount() {
@@ -49,20 +41,6 @@ function msCount() {
 
 };
 
-// Random car choise function:
-function randColor() {
-    const colorArry = [0, 1];
-    let car = colorArry[Math.floor(Math.random() * colorArry.length)]
-    if (car == 0) {
-        blueChoice.push(now);
-        allChoices.push(now);
-    } else {
-        redChoice.push(now);
-        allChoices.push(now);
-    }
-    return car
-};
-
 let count = 0; // counter for iterations
 // 1=red, 2=blue buttons
 let buttonChoice = null;
@@ -70,6 +48,7 @@ let sessionInterval = null;
 
 function startInterval() {
     sessionInterval = setInterval(function carMove() {
+        randSpeed();
         let choseCar = randColor();
         reset_redCar();
         reset_blueCar();
@@ -86,6 +65,7 @@ function startInterval() {
             if (choseCar >= 0.5) {
                 document.getElementById("redCar").style.display = "inline";
                 document.getElementById("redCar").style.animationPlayState = "running";
+                document.getElementById("redCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
                 document.getElementById("redButton").onclick = function () {
                     buttonChoice = buttonChoice + 1;
                     if (buttonChoice == 1) {
@@ -104,6 +84,7 @@ function startInterval() {
             } else {
                 document.getElementById("blueCar").style.display = "inline";
                 document.getElementById("blueCar").style.animationPlayState = "running";
+                document.getElementById("blueCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
                 document.getElementById("redButton").onclick = function () {
                     buttonChoice = buttonChoice - 1;
                     if (buttonChoice <= -1) {
@@ -122,7 +103,7 @@ function startInterval() {
                 };
             };
         }
-    }, 1000);
+    }, choseSpeed.slice(-1) * 1000);
 };
 //let nextClick = null;
 let demoClick = null;
@@ -169,17 +150,3 @@ function startFirstDay() {
     }
     goOn();
 }
-
-
-
-/*
-    let instractionsStart = new Promise(function (startInstructions, myReject) {
-        startInstructions(); // when successful
-        myReject();  // when error
-    });
-    instractionsStart.then(
-        function () { startInstructions() },
-        function () { startInstructions() }
-    );
-
-};*/

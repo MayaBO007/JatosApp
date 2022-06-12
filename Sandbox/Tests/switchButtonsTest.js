@@ -1,12 +1,6 @@
-// import reset_blueCar from "../functions/restBlue.js";
-// import reset_redCar from "../functions/restRed.js";
-// //import randColor from "../functions/randomColor.js";
-// import reset_airplane from "../functions/restAirplane.js";
-
 
 const correctRedPressSwitch = [];
 const correctBluePressSwitch = [];
-
 const incorrectRedPressSwitch = [];
 const incorrectBluePressSwitch = [];
 const redChoiceSwitch = [];
@@ -23,36 +17,11 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePressesSwitch.push(now);
 });
 
-//let now = null;
-// Time functions:
-function msCount() {
-    setInterval(function setTimer() {
-        now = now + 10;
-    }, 10);
-};
-
-// Random car choise function:
-function randColor() {
-    const colorArry = [0, 1];
-    let car = colorArry[Math.floor(Math.random() * colorArry.length)]
-    if (car == 0) {
-        blueChoiceSwitch.push(now);
-    } else {
-        redChoiceSwitch.push(now)
-    }
-    allChoicesSwitch.push(now);
-    return car
-};
-
-
-//let count = 0; // counter for iterations
-// car choice 0=red, 1=blue
-//buton choice 1=red, 2=blue
-// let buttonChoice = null;
-// let sessionInterval = null;
 function startIntervalSwitch() {
+    count = 0;
     sessionInterval = setInterval(function carMove() {
-        let choseCar = randColor();
+        randSpeed();
+        let choseCar = randColorSwitch();
         reset_redCar();
         reset_blueCar();
         reset_airplane();
@@ -64,6 +33,7 @@ function startIntervalSwitch() {
             if (choseCar >= 0.5) {
                 document.getElementById("redCar").style.display = "inline";
                 document.getElementById("redCar").style.animationPlayState = "running";
+                document.getElementById("redCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
                 document.getElementById("redButton").onclick = function () {
                     buttonChoice = buttonChoice + 1;
                     if (buttonChoice == 1) {
@@ -82,6 +52,7 @@ function startIntervalSwitch() {
             } else {
                 document.getElementById("blueCar").style.display = "inline";
                 document.getElementById("blueCar").style.animationPlayState = "running";
+                document.getElementById("blueCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
                 document.getElementById("redButton").onclick = function () {
                     buttonChoice = buttonChoice - 1;
                     if (buttonChoice <= -1) {
@@ -99,7 +70,7 @@ function startIntervalSwitch() {
                 };
             }
         }
-    }, 1000);
+    }, choseSpeed.slice(-1) * 1000);
 };
 
 
@@ -116,7 +87,7 @@ function startSwitchTest() {
         if (startClickSwitch == 1) {
             document.getElementById("startSwitchTestButton").style.display = "none";
             startIntervalSwitch();
-            msCount();
+            //msCount();
         };
     };
 };
