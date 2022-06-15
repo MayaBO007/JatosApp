@@ -1,16 +1,16 @@
 
-const correctRedPressYellow = [];
-const correctBluePressYellow = [];
-const incorrectRedPressYellow = [];
-const incorrectBluePressYellow = [];
-const redChoiceYellow = [];
-const blueChoiceYellow = [];
-const yellowChoiceYellow = [];
-const allRedPressesYellow = [];
-const allBluePressesYellow = [];
-const allCorrectFirstPressYellow = [];
-const allChoicesYellow = [];
-const howManyYellows = [];
+// const correctRedPressYellow = [];
+// const correctBluePressYellow = [];
+// const incorrectRedPressYellow = [];
+// const incorrectBluePressYellow = [];
+// const redChoiceYellow = [];
+// const blueChoiceYellow = [];
+// const yellowChoiceYellow = [];
+// const allRedPressesYellow = [];
+// const allBluePressesYellow = [];
+// const allCorrectFirstPressYellow = [];
+// const allChoicesYellow = [];
+// const howManyYellows = [];
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPressesYellow.push(now);

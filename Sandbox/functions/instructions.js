@@ -1,9 +1,9 @@
 
 
-let nextClick = null;
+//let nextClick = null;
 
-let noDisturb = null;
-let noDisturbBack = null;
+//let noDisturb = null;
+//let noDisturbBack = null;
 async function startInstructions() {
     return new Promise(resolve => {
         document.getElementById("ins1").style.display = "inline";

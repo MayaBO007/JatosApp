@@ -1,20 +1,26 @@
 
-const saveResponses = {
-    correctRedPress: correctRedPress,
-    correctBluePress: correctBluePress,
-    incorrectRedPress: incorrectRedPress,
-    incorrectBluePress: incorrectBluePress,
-    redChoice: redChoice,
-    blueChoice: blueChoice,
-    allRedPresses: allRedPresses,
-    allBluePresses: allBluePresses,
-    allCorrectFirstPress: allCorrectFirstPress,
-    allChoices: allChoices
-};
+// const saveResponses = {
+//     correctRedPress: correctRedPress,
+//     correctBluePress: correctBluePress,
+//     incorrectRedPress: incorrectRedPress,
+//     incorrectBluePress: incorrectBluePress,
+//     redChoice: redChoice,
+//     blueChoice: blueChoice,
+//     allRedPresses: allRedPresses,
+//     allBluePresses: allBluePresses,
+//     allCorrectFirstPress: allCorrectFirstPress,
+//     allChoices: allChoices
+// };
 
 //jatos.submitResultData(saveResponses);
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
+//let now = null;
+function msCount() {
+    setInterval(function setTimer() {
+        now = now + 10;
+    }, 10);
+};
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPresses.push(now);
@@ -23,22 +29,10 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
 carSpeed = 0;
-var myDelay = 1;
-var thisDelay = 1;
-var start = Date.now();
+let myDelay = 1;
+let thisDelay = 1;
+let start = now;
 
-// function startTimer() {
-//     setTimeout(function () {
-//         // your code here...
-//         // calculate the actual number of ms since last time
-//         var actual = Date.now() - start;
-//         // subtract any extra ms from the delay for the next cycle
-//         thisDelay = myDelay - (actual - myDelay);
-//         start = Date.now();
-//         // start the timer again
-//         startTimer();
-//     }, thisDelay);
-//}
 
 function startInterval() {
     function carMove() {
@@ -46,12 +40,12 @@ function startInterval() {
             carSpeed = randSpeedCar();
         }
         else {
-            var actual = Date.now() - start;
+            let actual = now - start;
             let intervalSpeed = randSpeedInterval();
             thisDelay = intervalSpeed - (actual - intervalSpeed);
             carSpeed = randSpeedCar();
         }
-        sessionInterval = setTimeout(() => {
+        let sessionInterval = setTimeout(() => {
             let choseCar = randColor();
             reset_redCar();
             reset_blueCar();
@@ -107,17 +101,17 @@ function startInterval() {
                 };
 
             }
-            start = Date.now();
+            start = now;
             carMove();
 
-        }, thisDelay * 1000);
+        }, thisDelay * 1000 + 2);
     };
 
     carMove();
 }
 
 
-let startClick = null;
+//let startClick = null;
 function startTraining() {
     document.getElementById("ins1").style.display = "none";
     document.getElementById("startButton").style.display = "inline";

@@ -1,14 +1,14 @@
 
-const correctRedPressSwitch = [];
-const correctBluePressSwitch = [];
-const incorrectRedPressSwitch = [];
-const incorrectBluePressSwitch = [];
-const redChoiceSwitch = [];
-const blueChoiceSwitch = [];
-const allRedPressesSwitch = [];
-const allBluePressesSwitch = [];
-const allCorrectFirstPressSwitch = [];
-const allChoicesSwitch = [];
+// const correctRedPressSwitch = [];
+// const correctBluePressSwitch = [];
+// const incorrectRedPressSwitch = [];
+// const incorrectBluePressSwitch = [];
+// const redChoiceSwitch = [];
+// const blueChoiceSwitch = [];
+// const allRedPressesSwitch = [];
+// const allBluePressesSwitch = [];
+// const allCorrectFirstPressSwitch = [];
+// const allChoicesSwitch = [];
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPressesSwitch.push(now);

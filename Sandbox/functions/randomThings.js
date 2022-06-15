@@ -56,7 +56,7 @@ function randColorDev() {
 };
 
 
-const speedArry = [0.75, 1, 1.25];
+const speedArry = [0.6, 0.8, 1];
 const choseSpeed = Array.from({ length: 1000 });
 for (let i = 0; i < choseSpeed.length; i++) {
     let speed = speedArry[Math.floor(Math.random() * speedArry.length)];
@@ -67,7 +67,6 @@ indexC1 = 0;
 indexC2 = 1;
 indexV1 = 0;
 indexV2 = 1;
-
 
 // Random car choise function:
 function randSpeedInterval() {

@@ -1,14 +1,14 @@
 
-const correctRedPressDevtest = [];
-const correctBluePressDevtest = [];
-const incorrectRedPressDevtest = [];
-const incorrectBluePressDevtest = [];
-const redChoiceDev = [];
-const blueChoiceDev = [];
-const allRedPressesDev = [];
-const allBluePressesDev = [];
-const allCorrectFirstPressDev = [];
-const allChoicesDev = [];
+// const correctRedPressDevtest = [];
+// const correctBluePressDevtest = [];
+// const incorrectRedPressDevtest = [];
+// const incorrectBluePressDevtest = [];
+// const redChoiceDev = [];
+// const blueChoiceDev = [];
+// const allRedPressesDev = [];
+// const allBluePressesDev = [];
+// const allCorrectFirstPressDev = [];
+// const allChoicesDev = [];
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPressesDev.push(now);
