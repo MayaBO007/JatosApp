@@ -48,7 +48,7 @@ function startInterval() {
         else {
             var actual = Date.now() - start;
             let intervalSpeed = randSpeedInterval();
-            thisDelay = intervalSpeed - (actual - intervalSpeed);
+            thisDelay = intervalSpeed - (actual - intervalSpeed());
             carSpeed = randSpeedCar();
         }
         sessionInterval = setTimeout(() => {
@@ -110,7 +110,7 @@ function startInterval() {
             start = Date.now();
             carMove();
 
-        }, thisDelay * 1000);
+        }, thisDelay * 1000 + 2);
     };
 
     carMove();
