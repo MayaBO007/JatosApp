@@ -20,26 +20,26 @@ document.getElementById("blueButton").addEventListener("click", function () {
 });
 
 
-let binaryPress = [];
-// Time count function:
-function msCount() {
-    setInterval(function setTimer() {
-        now = now + 10;
-        if (now >= 10000) {
-            let zeroArray = new Array(allChoices.length - allCorrectFirstPress.length).fill(0);
-            let oneArray = new Array(allCorrectFirstPress.length).fill(1);
-            binaryPress = oneArray.concat(zeroArray);
-            let responses = binaryPress.slice(binaryPress.length - 120, binaryPress.length)
-            if (d3.mean(responses) >= 0.75) {
-                if (d3.variance(responses) <= 0.000625) {
-                    //stopinterval
-                }
-            }
+// let binaryPress = [];
+// // Time count function:
+// function msCount() {
+//     setInterval(function setTimer() {
+//         now = now + 10;
+//         if (now >= 10000) {
+//             let zeroArray = new Array(allChoices.length - allCorrectFirstPress.length).fill(0);
+//             let oneArray = new Array(allCorrectFirstPress.length).fill(1);
+//             binaryPress = oneArray.concat(zeroArray);
+//             let responses = binaryPress.slice(binaryPress.length - 120, binaryPress.length)
+//             if (d3.mean(responses) >= 0.75) {
+//                 if (d3.variance(responses) <= 0.000625) {
+//                     //stopinterval
+//                 }
+//             }
 
-        }
-    }, 10);
+//         }
+//     }, 10);
 
-};
+//};
 
 let count = 0; // counter for iterations
 // 1=red, 2=blue buttons
@@ -47,63 +47,71 @@ let buttonChoice = null;
 let sessionInterval = null;
 
 function startInterval() {
-    sessionInterval = setInterval(function carMove() {
-        randSpeed();
-        let choseCar = randColor();
-        reset_redCar();
-        reset_blueCar();
-        reset_airplane();
-        buttonChoice = 0;
-        if (count >= 20) {
-            clearInterval(sessionInterval);
-            setTimeout(startInterval, 9000);
-            document.getElementById("airplane").style.display = "inline";
-            document.getElementById("airplane").style.animationPlayState = "running";
-            count = 0;
-        } else {
-            count++;
-            if (choseCar >= 0.5) {
-                document.getElementById("redCar").style.display = "inline";
-                document.getElementById("redCar").style.animationPlayState = "running";
-                document.getElementById("redCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
-                document.getElementById("redButton").onclick = function () {
-                    buttonChoice = buttonChoice + 1;
-                    if (buttonChoice == 1) {
-                        correctRedPress.push(now);
-                        allCorrectFirstPress.push(now);
-                    } else {
-                        correctRedPress.push(now);
-                    }
-                };
-                document.getElementById("blueButton").onclick = function () {
-                    buttonChoice = buttonChoice - 1;
-                    if (buttonChoice <= -1) {
-                        incorrectBluePress.push(now);
-                    }
-                };
+    sessionInterval = setInterval(
+        function carMove() {
+            let choseCar = randColor();
+            let carSpeed = randSpeedCar();
+            reset_airplane();
+            buttonChoice = 0;
+            if (count >= 20) {
+                clearInterval(sessionInterval);
+                setTimeout(startInterval, 2000);
+                document.getElementById("airplane").style.display = "inline";
+                document.getElementById("airplane").style.animationPlayState = "running";
+                count = 0;
             } else {
-                document.getElementById("blueCar").style.display = "inline";
-                document.getElementById("blueCar").style.animationPlayState = "running";
-                document.getElementById("blueCar").style.animationDuration = String(choseSpeed.slice(-1)) + "s";
-                document.getElementById("redButton").onclick = function () {
-                    buttonChoice = buttonChoice - 1;
-                    if (buttonChoice <= -1) {
-                        incorrectRedPress.push(now);
+                count++;
+                if (choseCar >= 0.5) {
+                    document.getElementById("redCar").style.display = "inline";
+                    document.getElementById("redCar").style.animationPlayState = "running";
+                    document.getElementById("redCar").style.animationDuration = String(carSpeed) + "s";
+                    document.getElementById("redButton").onclick = function () {
+                        buttonChoice = buttonChoice + 1;
+                        if (buttonChoice == 1) {
+                            correctRedPress.push(now);
+                            allCorrectFirstPress.push(now);
+                        } else {
+                            correctRedPress.push(now);
+                        }
                     };
-                };
-                document.getElementById("blueButton").onclick = function () {
-                    buttonChoice = buttonChoice + 1;
-                    if (buttonChoice == 1) {
-                        correctBluePress.push(now);
-                        allCorrectFirstPress.push(now);
-                    } else {
-                        correctBluePress.push(now);
-                    }
+                    document.getElementById("blueButton").onclick = function () {
+                        buttonChoice = buttonChoice - 1;
+                        if (buttonChoice <= -1) {
+                            incorrectBluePress.push(now);
+                        }
+                    };
 
+                    setTimeout(() => {
+                        reset_redCar();
+                    }, carSpeed * 1000);
+                } else {
+                    document.getElementById("blueCar").style.display = "inline";
+                    document.getElementById("blueCar").style.animationPlayState = "running";
+                    document.getElementById("blueCar").style.animationDuration = String(carSpeed) + "s";
+                    document.getElementById("redButton").onclick = function () {
+                        buttonChoice = buttonChoice - 1;
+                        if (buttonChoice <= -1) {
+                            incorrectRedPress.push(now);
+                        };
+                    };
+                    document.getElementById("blueButton").onclick = function () {
+                        buttonChoice = buttonChoice + 1;
+                        if (buttonChoice == 1) {
+                            correctBluePress.push(now);
+                            allCorrectFirstPress.push(now);
+                        } else {
+                            correctBluePress.push(now);
+                        }
+
+                    };
+
+                    setTimeout(() => {
+                        reset_blueCar();
+                    }, carSpeed * 1000);
                 };
+
             };
-        }
-    }, choseSpeed.slice(-1) * 1000);
+        }, 1 * 1000);// (Maximal carSpeed)*1000
 };
 //let nextClick = null;
 let demoClick = null;

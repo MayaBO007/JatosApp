@@ -16,11 +16,11 @@
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
 //let now = null;
-function msCount() {
-    setInterval(function setTimer() {
-        now = now + 10;
-    }, 10);
-};
+// function msCount() {
+//     setInterval(function setTimer() {
+//         now = now + 10;
+//     }, 10);
+// };
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPresses.push(now);
@@ -28,32 +28,18 @@ document.getElementById("redButton").addEventListener("click", function () {
 document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
-carSpeed = 0;
-let myDelay = 1;
-let thisDelay = 1;
-let start = now;
 
 
 function startInterval() {
-    function carMove() {
-        if (carSpeed == 0) {
-            carSpeed = randSpeedCar();
-        }
-        else {
-            let actual = now - start;
-            let intervalSpeed = randSpeedInterval();
-            thisDelay = intervalSpeed - (actual - intervalSpeed);
-            carSpeed = randSpeedCar();
-        }
-        let sessionInterval = setTimeout(() => {
+    sessionInterval = setInterval(
+        function carMove() {
             let choseCar = randColor();
-            reset_redCar();
-            reset_blueCar();
+            let carSpeed = randSpeedCar();
             reset_airplane();
             buttonChoice = 0;
             if (count >= 20) {
-                //clearInterval(sessionInterval);
-                setTimeout(startInterval, 9000);
+                clearInterval(sessionInterval);
+                setTimeout(startInterval, 2000);
                 document.getElementById("airplane").style.display = "inline";
                 document.getElementById("airplane").style.animationPlayState = "running";
                 count = 0;
@@ -78,6 +64,10 @@ function startInterval() {
                             incorrectBluePress.push(now);
                         }
                     };
+
+                    setTimeout(() => {
+                        reset_redCar();
+                    }, carSpeed * 1000);
                 } else {
                     document.getElementById("blueCar").style.display = "inline";
                     document.getElementById("blueCar").style.animationPlayState = "running";
@@ -98,17 +88,15 @@ function startInterval() {
                         }
 
                     };
+
+                    setTimeout(() => {
+                        reset_blueCar();
+                    }, carSpeed * 1000);
                 };
 
-            }
-            start = now;
-            carMove();
-
-        }, thisDelay * 1000 + 2);
-    };
-
-    carMove();
-}
+            };
+        }, 1 * 1000);// (Maximal carSpeed)*1000
+};
 
 
 //let startClick = null;

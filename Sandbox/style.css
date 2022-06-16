@@ -64,10 +64,10 @@
 
 #startSwitchTestButton {
     position: absolute;
-    left: 35%;
-    top: 25%;
-    width: 30%;
-    height: 45%;
+    left: 27.5%;
+    top: 20%;
+    width: 45%;
+    height: 60%;
     border: none;
     color: none;
     background-color: transparent;
@@ -93,21 +93,6 @@
 #startDevtestButton:active {
     transform: translateY(4px);
 }
-
-/*#endOfDayButton {
-    position: absolute;
-    left : 40%;
-    top : 35%;
-    width: 20%;
-    height: 30%;
-    border: none;
-    color: none;
-    background-color: transparent;
-    display: none;
-    }
-    #endOfDayButton:active {
-        transform: translateY(4px);
-    }*/
 
 #redButton {
     position: absolute;
@@ -218,23 +203,20 @@
     animation-play-state: paused;
     position: absolute;
     animation-name: yellowCarMoving;
-    animation-duration: 1s;
-    animation-fill-mode: initial;
+    /*animation-duration: 1s;*/
+    animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     display: none;
 }
 
 @keyframes yellowCarMoving {
     from {
-        top: 60pc
+        top: 130%
     }
 
     to {
-        top: -50pc
+        top: -30%
     }
-
-    ;
-
 }
 
 #airplane {
@@ -244,25 +226,22 @@
     left: 45%;
     top: 110%;
     animation-play-state: paused;
-    position: relative;
+    position: absolute;
     animation-name: airplaneMoving;
-    animation-duration: 10s;
-    animation-fill-mode: initial;
+    animation-duration: 3s;
+    animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     display: none;
 }
 
 @keyframes airplaneMoving {
     from {
-        top: 60pc
+        top: 110%
     }
 
     to {
-        top: -40pc
+        top: -30%
     }
-
-    ;
-
 }
 
 #startPage {
