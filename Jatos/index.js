@@ -1,16 +1,119 @@
 
 const sub_ID = jatos.workerId;
-function sessionNum() {
-    howManyDays.length + 1;
+const doneDays = [];
+const expDays = [];
+//let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
+//jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+
+
+// move to main function
+function timeline() {
+    let timeNow = getTodayStartTime();
+    let today = getTodayDate();
+    if (today == startDate) {
+        if (doneDays.slice(0,1) == "doneDay1") {// add promise and resolve
+            //show see you tomorrow msg
+        } else {
+            let doneDay1 = await startFirstDay();
+            expDays.push(getTodayDate());
+            if (doneDay1 == "doneDay1") {
+                doneDays.push("doneDay1");
+                let today = getTodayDate();
+                let time = getTodayStartTime();
+                if (today < firstDay + day) {
+                    //set timeout for 5am tomorrow -  time now
+                    let doneDayTwo = await startTraining(); // add promise and resolve
+                    if (doneDayTwo == "doneDayTwo") {
+                        expDays.push(getTodayDate());
+                        doneDays.push("doneDayTwo");
+                        let today = getTodayDate();
+                        let time = getTodayStartTime();
+                        if (today < firstDay + day) {
+                            //set timeout for 5am tomorrow -  time now
+                            let doneDayThree = await start2tests(); // add promise and resolve
+                            if (doneDayThree == "doneDayThree") {
+                                expDays.push(getTodayDate());
+                                doneDays.push("doneDayThree");
+                                let today = getTodayDate();
+                                let time = getTodayStartTime();
+                                if (today < firstDay + day) {
+                                    //set timeout for 5am tomorrow -  time now
+                                    let doneDayFour = await startDevTest(); // add promise and resolve
+                                    if (doneDayFour == "doneDayFour") {
+                                        expDays.push(getTodayDate());
+                                        doneDays.push("doneDayFour");
+                                        // show end of experiment msg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } else if (!today == lastDay + day) {
+        if (today == lastDay) {
+            //show see you tomorrow msg
+        } else {
+            //show game over msg
+        }
+          }
+         else {
+    if (00 < timeNow & timeNow < 5am) {
+        today = today - day;
+        }
+        if (doneDays.length==1) {
+        let doneDayTwo = await startTraining(); // add promise and resolve
+            if (doneDayTwo == "doneDayTwo") {
+            expDays.push(getTodayDate());
+            doneDays.push("doneDayTwo");
+            let today = getTodayDate();
+            let time = getTodayStartTime();
+            if (today < firstDay + day) {
+                //set timeout for 5am tomorrow -  time now
+                let doneDayThree = await start2tests(); // add promise and resolve
+                if (doneDayThree == "doneDayThree") {
+                    expDays.push(getTodayDate());
+                    doneDays.push("doneDayThree");
+                    let today = getTodayDate();
+                    let time = getTodayStartTime();
+                    if (today < firstDay + day) {
+                        //set timeout for 5am tomorrow -  time now
+                        let doneDayFour = await startDevTest(); // add promise and resolve
+                        if (doneDayFour == "doneDayFour") {
+                            doneDays.push("doneDayFour");
+                            // show end of experiment msg
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+        else if (doneDays.length == 2) {
+        let doneDayThree = await start2tests(); // add promise and resolve
+        if (doneDayThree == "doneDayThree") {
+            doneDays.push("doneDayThree");
+            let today = getTodayDate();
+            let time = getTodayStartTime();
+            if (today < firstDay + day) {
+                //set timeout for 5am tomorrow -  time now
+                let doneDayFour = await startDevTest(); // add promise and resolve
+                if (doneDayFour == "doneDayFour") {
+                    doneDays.push("doneDayFour");
+                    // show end of experiment msg
+                }
+            }
+        }
+    }
+    else {
+        let doneDayFour = await startDevTest(); // add promise and resolve
+        if (doneDayFour == "doneDayFour") {
+            doneDays.push("doneDayFour");
+            // show end of experiment msg
+        }
+    }
 }
-//let sub_info = {"group" : groupNum, "firstDay" : firstDay, lastDay : lastDay}
-//jatos.batchSession.add("/subjects/" + sub_ID, sub_info); 
-
-
-// Date and time functions:
-// add zero in front of numbers < 10
-
-//session strart time:
 
 
 
