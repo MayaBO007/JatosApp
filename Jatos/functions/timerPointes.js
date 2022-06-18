@@ -1,4 +1,19 @@
 
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+};
+
+const d = new Date();
+let day = d.getDate();
+let month = 1 + d.getMonth();
+let year = d.getFullYear();
+day = checkTime(day);
+month = checkTime(month);
+const startDate = day + ':' + month + ":" + year;
+
+
+
 function startTimer() {
     let todayHeb = ":היום הרווחת";
     let redCoinsHeb = ":מטבעות אדומים";
