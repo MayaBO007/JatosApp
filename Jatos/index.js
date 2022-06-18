@@ -17,6 +17,8 @@ function timeline() {
             let doneDay1 = await startFirstDay();
             expDays.push(getTodayDate());
             if (doneDay1 == "doneDay1") {
+                let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
+                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                 doneDays.push("doneDay1");
                 let today = getTodayDate();
                 let time = getTodayStartTime();
@@ -24,6 +26,8 @@ function timeline() {
                     //set timeout for 5am tomorrow -  time now
                     let doneDayTwo = await startTraining(); // add promise and resolve
                     if (doneDayTwo == "doneDayTwo") {
+                        let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
+                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                         expDays.push(getTodayDate());
                         doneDays.push("doneDayTwo");
                         let today = getTodayDate();
@@ -32,6 +36,8 @@ function timeline() {
                             //set timeout for 5am tomorrow -  time now
                             let doneDayThree = await start2tests(); // add promise and resolve
                             if (doneDayThree == "doneDayThree") {
+                                let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
+                                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                 expDays.push(getTodayDate());
                                 doneDays.push("doneDayThree");
                                 let today = getTodayDate();
@@ -40,6 +46,8 @@ function timeline() {
                                     //set timeout for 5am tomorrow -  time now
                                     let doneDayFour = await startDevTest(); // add promise and resolve
                                     if (doneDayFour == "doneDayFour") {
+                                        let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
+                                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                         expDays.push(getTodayDate());
                                         doneDays.push("doneDayFour");
                                         // show end of experiment msg
