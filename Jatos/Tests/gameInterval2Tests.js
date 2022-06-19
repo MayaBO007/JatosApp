@@ -1,50 +1,37 @@
-
-const correctRedPressSwitch = [];
-const correctBluePressSwitch = [];
-const incorrectRedPressSwitch = [];
-const incorrectBluePressSwitch = [];
-const redChoiceSwitch = [];
-const blueChoiceSwitch = [];
-const allRedPressesSwitch = [];
-const allBluePressesSwitch = [];
-const allCorrectFirstPressSwitch = [];
-const allChoicesSwitch = [];
-
-const saveResponsesSwitch = {
-    correctRedPressSwitch: correctRedPressSwitch,
-    correctBluePressSwitch: correctBluePressSwitch,
-    incorrectRedPressSwitch: incorrectRedPressSwitch,
-    incorrectBluePressSwitch: incorrectBluePressSwitch,
-    redChoiceSwitch: redChoiceSwitch,
-    blueChoiceSwitch: blueChoiceSwitch,
-    allRedPressesSwitch: allRedPressesSwitch,
-    allBluePressesSwitch: allBluePressesSwitch,
-    allCorrectFirstPressSwitch: allCorrectFirstPressSwitch,
-    allChoicesSwitch: allChoicesSwitch
-};
-
-//jatos.submitResultData(saveResponsesSwitch);
+const correctRedPress = [];
+const correctBluePress = [];
+const incorrectRedPress = [];
+const incorrectBluePress = [];
+const redChoice = [];
+const blueChoice = [];
+const allRedPresses = [];
+const allBluePresses = [];
+const allCorrectFirstPress = [];
+const allChoices = [];
 
 document.getElementById("redButton").addEventListener("click", function () {
-    allRedPressesSwitch.push(now);
+    allRedPresses.push(now);
 });
 document.getElementById("blueButton").addEventListener("click", function () {
-    allBluePressesSwitch.push(now);
+    allBluePresses.push(now);
 });
-let sessionIntervalSwitch = null;
+let count = 0; // counter for iterations
+// 1=red, 2=blue buttons
+let buttonChoice = null;
+let sessionInterval = null;
 
-async function startIntervalSwitch() {
+async function startInterval2Tests() {
     return new Promise(resolve => {
-        count = 0;
-        sessionIntervalSwitch = setInterval(
+
+        sessionInterval = setInterval(
             function carMove() {
                 let choseCar = randColor();
                 let carSpeed = randSpeedCar();
                 reset_airplane();
                 buttonChoice = 0;
                 if (count >= 20) {
-                    clearInterval(sessionIntervalSwitch);
-                    setTimeout(startIntervalSwitch, 2000);
+                    clearInterval(sessionInterval);
+                    setTimeout(startInterval2Tests, 2000);
                     document.getElementById("airplane").style.display = "inline";
                     document.getElementById("airplane").style.animationPlayState = "running";
                     count = 0;
@@ -57,16 +44,16 @@ async function startIntervalSwitch() {
                         document.getElementById("redButton").onclick = function () {
                             buttonChoice = buttonChoice + 1;
                             if (buttonChoice == 1) {
-                                correctRedPressSwitch.push(now);
-                                allCorrectFirstPressSwitch.push(now);
+                                correctRedPress.push(now);
+                                allCorrectFirstPress.push(now);
                             } else {
-                                correctRedPressSwitch.push(now);
+                                correctRedPress.push(now);
                             }
                         };
                         document.getElementById("blueButton").onclick = function () {
                             buttonChoice = buttonChoice - 1;
                             if (buttonChoice <= -1) {
-                                incorrectBluePressSwitch.push(now);
+                                incorrectBluePress.push(now);
                             }
                         };
 
@@ -80,16 +67,16 @@ async function startIntervalSwitch() {
                         document.getElementById("redButton").onclick = function () {
                             buttonChoice = buttonChoice - 1;
                             if (buttonChoice <= -1) {
-                                incorrectRedPressSwitch.push(now);
+                                incorrectRedPress.push(now);
                             };
                         };
                         document.getElementById("blueButton").onclick = function () {
                             buttonChoice = buttonChoice + 1;
                             if (buttonChoice == 1) {
-                                correctBluePressSwitch.push(now);
-                                allCorrectFirstPressSwitch.push(now);
+                                correctBluePress.push(now);
+                                allCorrectFirstPress.push(now);
                             } else {
-                                correctBluePressSwitch.push(now);
+                                correctBluePress.push(now);
                             }
 
                         };
@@ -100,34 +87,15 @@ async function startIntervalSwitch() {
                     };
 
                 };
-                //   jatos.appendResultData(saveResponsesSwitch);
+                //    jatos.appendResultData(saveResponses);
             }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
-        let sessionTimerSwitch = setTimeout(function timeCountSwitch() {
+        let sessionTimer = setTimeout(function timeCount() {
             document.getElementById("blueButton").style.display = "none";
             document.getElementById("redButton").style.display = "none";
-            clearInterval(sessionIntervalSwitch);
-            clearInterval(sessionTimerSwitch);
-            resolve("done2");
+            clearInterval(sessionInterval);
+            clearInterval(sessionTimer);
+            resolve("done1");
         }, 10000);
     });
 };
-
-
-// let startClickSwitch = null;
-// function startSwitchTest() {
-//     document.getElementById("redButton").style.display = "inline";
-//     document.getElementById("blueButton").style.display = "inline";
-//     document.getElementById("gameScreen").style.display = "inline";
-//     document.getElementById("redButton").style.left = "81%";
-//     document.getElementById("blueButton").style.left = "1%";
-//     document.getElementById("startSwitchTestButton").style.display = "inline";
-//     document.getElementById("startSwitchTestButton").onclick = function () {
-//         startClickSwitch = 1;
-//         if (startClickSwitch == 1) {
-//             document.getElementById("startSwitchTestButton").style.display = "none";
-//             startIntervalSwitch();
-//             //msCount();
-//         };
-//     };
-// };
