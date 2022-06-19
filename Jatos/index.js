@@ -1,137 +1,46 @@
-
-const sub_ID = jatos.workerId;
-const doneDays = [];
-const expDays = [];
-//let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
-//jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-
-
-// move to main function
-function timeline() {
-    let timeNow = getTodayStartTime();
-    let today = getTodayDate();
-    if (today == startDate) {
-        if (doneDays.slice(0,1) == "doneDay1") {// add promise and resolve
-            //show see you tomorrow msg
-        } else {
-            let doneDay1 = await startFirstDay();
-            expDays.push(getTodayDate());
-            if (doneDay1 == "doneDay1") {
-                let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
-                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                doneDays.push("doneDay1");
-                let today = getTodayDate();
-                let time = getTodayStartTime();
-                if (today < firstDay + day) {
-                    //set timeout for 5am tomorrow -  time now
-                    let doneDayTwo = await startTraining(); // add promise and resolve
-                    if (doneDayTwo == "doneDayTwo") {
-                        let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
-                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                        expDays.push(getTodayDate());
-                        doneDays.push("doneDayTwo");
-                        let today = getTodayDate();
-                        let time = getTodayStartTime();
-                        if (today < firstDay + day) {
-                            //set timeout for 5am tomorrow -  time now
-                            let doneDayThree = await start2tests(); // add promise and resolve
-                            if (doneDayThree == "doneDayThree") {
-                                let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
-                                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                expDays.push(getTodayDate());
-                                doneDays.push("doneDayThree");
-                                let today = getTodayDate();
-                                let time = getTodayStartTime();
-                                if (today < firstDay + day) {
-                                    //set timeout for 5am tomorrow -  time now
-                                    let doneDayFour = await startDevTest(); // add promise and resolve
-                                    if (doneDayFour == "doneDayFour") {
-                                        let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : lastDay}
-                                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                        expDays.push(getTodayDate());
-                                        doneDays.push("doneDayFour");
-                                        // show end of experiment msg
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    } else if (!today == lastDay + day) {
-        if (today == lastDay) {
-            //show see you tomorrow msg
-        } else {
-            //show game over msg
-        }
-          }
-         else {
-    if (00 < timeNow & timeNow < 5am) {
-        today = today - day;
-        }
-        if (doneDays.length==1) {
-        let doneDayTwo = await startTraining(); // add promise and resolve
-            if (doneDayTwo == "doneDayTwo") {
-            expDays.push(getTodayDate());
-            doneDays.push("doneDayTwo");
-            let today = getTodayDate();
-            let time = getTodayStartTime();
-            if (today < firstDay + day) {
-                //set timeout for 5am tomorrow -  time now
-                let doneDayThree = await start2tests(); // add promise and resolve
-                if (doneDayThree == "doneDayThree") {
-                    expDays.push(getTodayDate());
-                    doneDays.push("doneDayThree");
-                    let today = getTodayDate();
-                    let time = getTodayStartTime();
-                    if (today < firstDay + day) {
-                        //set timeout for 5am tomorrow -  time now
-                        let doneDayFour = await startDevTest(); // add promise and resolve
-                        if (doneDayFour == "doneDayFour") {
-                            doneDays.push("doneDayFour");
-                            // show end of experiment msg
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-        else if (doneDays.length == 2) {
-        let doneDayThree = await start2tests(); // add promise and resolve
-        if (doneDayThree == "doneDayThree") {
-            doneDays.push("doneDayThree");
-            let today = getTodayDate();
-            let time = getTodayStartTime();
-            if (today < firstDay + day) {
-                //set timeout for 5am tomorrow -  time now
-                let doneDayFour = await startDevTest(); // add promise and resolve
-                if (doneDayFour == "doneDayFour") {
-                    doneDays.push("doneDayFour");
-                    // show end of experiment msg
-                }
-            }
-        }
-    }
-    else {
-        let doneDayFour = await startDevTest(); // add promise and resolve
-        if (doneDayFour == "doneDayFour") {
-            doneDays.push("doneDayFour");
-            // show end of experiment msg
-        }
-    }
-}
+// import startTraining, { correctBluePress, correctRedPress } from "./functions/gameInterval.js";
+// import startFirstDay from "./functions/firstDay.js";
+// import startInstructions from "./functions/instructions.js";
+// import startYellowTest from "./Tests/yellowCarInterval.js"
+// import startSwitchTest from "./Tests/switchButtonsTest.js"
+// import startDevTest from "./Tests/devTest.js"
 
 
 
+// Date and time functions:
+// add zero in front of numbers < 10
 
+//session strart time:
+/*
+const d = new Date();
+let h = d.getHours();
+let m = d.getMinutes();
+let s = d.getSeconds();
+let ms = d.getMilliseconds();
+h = checkTime(h);
+m = checkTime(m);
+s = checkTime(s);
+ms = checkTime(ms);
+let startTime = h + ":" + m + ":" + s + ":" + ms;
 
+let day = d.getDate();
+let month = 1 + d.getMonth();
+let year = d.getFullYear();
+day = checkTime(day);
+month = checkTime(month);
+const startDate = day + ':' + month + ":" + year;
+console.log(startDate + ' ' + startTime);
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+};
+
+*/
 let todayHeb = ":היום הרווחת";
 let redCoinsHeb = ":מטבעות אדומים";
 let blueCoinsHeb = ":מטבעות כחולים";
 let seeYouTomorrowHeb = "(:!נתראה מחר";
-let howManyDays = [];
 
 let time = 0;
 function startTimer() {
@@ -147,10 +56,7 @@ function startTimer() {
             document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
             document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
             document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
-            howManyDays.push(1);
             //document.getElementById('endOfDayButton').style.display = "inline";
-            let studySessionData = { "dayFinished": howManyDays.length, "date": getTodayDate() };
-            jatos.setStudySessionData("subjects/" + sub_ID, studySessionData);
         } else {
             time++;
         }
@@ -164,15 +70,13 @@ function START() {
     setTimeout(() => {
         document.getElementById("startPage").style.display = "none";
         document.getElementById("moneyCar").style.display = "none";
-        let session = sessionNum()
-        if (session == 1) {
-            startFirstDay();
-        } else if (session == 2) {
-            startTraining();
-        } else if (session == 3) {
-            start2tests();
-        } else
-            startDevTest();
+        //startTraining();
+        //startFirstDay();
+        //startYellowTest();
+        //startSwitchTest();
+        //startDevTest();
+        //start2tests();
+        startYellowTest();
     }, 1500);
 }
 

@@ -630,3 +630,21 @@
     transform: translateY(4px);
 
 }
+
+#startAfterSwitchTestButton {
+    position: absolute;
+    left: 27.5%;
+    top: 20%;
+    width: 45%;
+    height: 60%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
+}
+
+#startAfterSwitchTestButton:active {
+    transform: translateY(4px);
+
+}
