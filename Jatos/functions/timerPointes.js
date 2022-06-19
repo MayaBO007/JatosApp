@@ -47,17 +47,17 @@ function msCount() {
     }, 10);
 };
 
-const todayDetails = new Date();
+const todayStartDetails = new Date();
 
 function getTodayStartTime() {
-    let hToday = todayDetails.getHours();
-    let mToday = todayDetails.getMinutes();
-    let sToday = todayDetails.getSeconds();
-    let msToday = todayDetails.getMilliseconds();
-    hToday = checkTime(h);
-    mToday = checkTime(m);
-    sToday = checkTime(s);
-    msToday = checkTime(ms);
+    let hToday = todayStartDetails.getHours();
+    let mToday = todayStartDetails.getMinutes();
+    let sToday = todayStartDetails.getSeconds();
+    let msToday = todayStartDetails.getMilliseconds();
+    hToday = checkTime(hToday);
+    mToday = checkTime(mToday);
+    sToday = checkTime(sToday);
+    msToday = checkTime(msToday);
     let startTimeToday = hToday + ":" + mToday + ":" + sToday + ":" + msToday;
     return (startTimeToday);
 }
@@ -73,4 +73,18 @@ function getTodayDate() {
 
 }
 
+function timeToWait() {
+    let todayEndDetails = new Date();
+    let hToday = todayEndDetails.getHours();
+    let mToday = todayEndDetails.getMinutes();
+    let sToday = todayEndDetails.getSeconds();
+    let msToday = todayEndDetails.getMilliseconds();
+    hChange = (29-checkTime(hToday))*3600000;
+    mChange = (60-checkTime(mToday))*60000;
+    sChange = (60-checkTime(sToday))*1000;
+    msChange = (999-checkTime(msToday));
+     
+    let msToWait = hChange + mChange + sChange + msChange;
+    return (msToWait);
+}
     
