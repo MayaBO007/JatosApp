@@ -7,66 +7,74 @@ const expDays = [];
 
 // move to main function
 function timeline() {
+    let fullDate = new Date();
     let timeNow = getTodayStartTime();
     let today = getTodayDate();
+    let yesterday = doneDays.slice(-1);
+    let yesterdayPlusOne = yesterday.setDate(yesterday.getDate() + 1);
+    yesterdayPlusOne = new Date (yesterdayPlusOne)
     if (today == startDate) {
         if (doneDays.slice(0, 1) == "doneDay1") {// add promise and resolve
             //show see you tomorrow msg
         } else {
             let doneDay1 = await startFirstDay();
-            expDays.push(getTodayDate());
             if (doneDay1 == "doneDay1") {
-                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: lastDay }
+                expDays.push(fullDate());
+                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: today }
                 jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                 doneDays.push("doneDay1");
-                let today = getTodayDate();
-                let time = getTodayStartTime();
-                if (today < firstDay + day) {
+                //let today = getTodayDate();
+                //let time = getTodayStartTime();
+                //if (today < firstDay + day) {
                     //set timeout for 5am tomorrow -  time now
+                    setTimeout(()=>{
                     let doneDayTwo = await startTraining(); // add promise and resolve
                     if (doneDayTwo == "doneDayTwo") {
-                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: lastDay }
+                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: today }
                         jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                        expDays.push(getTodayDate());
+                        expDays.push(fullDate());
                         doneDays.push("doneDayTwo");
-                        let today = getTodayDate();
-                        let time = getTodayStartTime();
-                        if (today < firstDay + day) {
-                            //set timeout for 5am tomorrow -  time now
+                        //let today = getTodayDate();
+                        //let time = getTodayStartTime();
+                        //if (today < firstDay + day) {
+                        //set timeout for 5am tomorrow -  time now
+                        setTimeout(()=>{
                             let doneDayThree = await start2tests(); // add promise and resolve
                             if (doneDayThree == "doneDayThree") {
-                                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: lastDay }
+                                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: today }
                                 jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                expDays.push(getTodayDate());
+                                expDays.push(fullDate());
                                 doneDays.push("doneDayThree");
-                                let today = getTodayDate();
-                                let time = getTodayStartTime();
-                                if (today < firstDay + day) {
-                                    //set timeout for 5am tomorrow -  time now
+                                //let today = getTodayDate();
+                                //let time = getTodayStartTime();
+                                //if (today < firstDay + day) {
+                                //set timeout for 5am tomorrow -  time now
+                                setTimeout(()=>{
                                     let doneDayFour = await startDevTest(); // add promise and resolve
                                     if (doneDayFour == "doneDayFour") {
-                                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: lastDay }
+                                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: today }
                                         jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                        expDays.push(getTodayDate());
+                                        expDays.push(fullDate());
                                         doneDays.push("doneDayFour");
                                         // show end of experiment msg
+                                        
                                     }
-                                }
+                                },timeToWait());
                             }
-                        }
+                        },timeToWait());
                     }
-                }
+                },timeToWait());
             }
         }
-    } else if (!today == lastDay + day) {
-        if (today == lastDay) {
+    } else if (fullDate.getDate() != yesterdayPlusOne.getDate()){ //|| yesterdayPlusOne.getDate() - fullDate.getDate() > 25 ) {
+        if (fullDate == yesterday) {
             //show see you tomorrow msg
         } else {
             //show game over msg
         }
     }
     else {
-        if (00 < timeNow & timeNow < 5am) {
+        if (00 < timeNow & timeNow < 5) {
             today = today - day;
         }
         if (doneDays.length == 1) {
@@ -122,7 +130,7 @@ function timeline() {
         }
     }
 
-
+}
 
 
 

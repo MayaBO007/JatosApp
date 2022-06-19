@@ -1,42 +1,38 @@
-// import startTraining, { correctBluePress, correctRedPress } from "./functions/gameInterval.js";
-// import startFirstDay from "./functions/firstDay.js";
-// import startInstructions from "./functions/instructions.js";
-// import startYellowTest from "./Tests/yellowCarInterval.js"
-// import startSwitchTest from "./Tests/switchButtonsTest.js"
-// import startDevTest from "./Tests/devTest.js"
-
-
 
 // Date and time functions:
 // add zero in front of numbers < 10
 
 //session strart time:
-/*
-const d = new Date();
-let h = d.getHours();
-let m = d.getMinutes();
-let s = d.getSeconds();
-let ms = d.getMilliseconds();
-h = checkTime(h);
-m = checkTime(m);
-s = checkTime(s);
-ms = checkTime(ms);
-let startTime = h + ":" + m + ":" + s + ":" + ms;
 
-let day = d.getDate();
-let month = 1 + d.getMonth();
-let year = d.getFullYear();
-day = checkTime(day);
-month = checkTime(month);
-const startDate = day + ':' + month + ":" + year;
-console.log(startDate + ' ' + startTime);
+// const d = new Date();
+// let h = d.getHours();
+// let m = d.getMinutes();
+// let s = d.getSeconds();
+// let ms = d.getMilliseconds();
+// h = checkTime(h);
+// m = checkTime(m);
+// s = checkTime(s);
+// ms = checkTime(ms);
+// let startTime = h + ":" + m + ":" + s + ":" + ms;
 
-function checkTime(i) {
-    if (i < 10) { i = "0" + i };
-    return i;
-};
+// let day = d.getDate();
+// let month = 1 + d.getMonth();
+// let year = d.getFullYear();
+// day = checkTime(day);
+// month = checkTime(month);
+// const startDate = day + ':' + month + ":" + year;
+// console.log(startTime);
+// console.log(- startTime)
 
-*/
+// function checkTime(i) {
+//     if (i < 10) { i = "0" + i };
+//     return i;
+// };
+
+
+
+//let today = getTodayStartTime();
+
 let todayHeb = ":היום הרווחת";
 let redCoinsHeb = ":מטבעות אדומים";
 let blueCoinsHeb = ":מטבעות כחולים";
@@ -76,7 +72,7 @@ function START() {
         //startSwitchTest();
         //startDevTest();
         //start2tests();
-        startYellowTest();
+        //startYellowTest();
     }, 1500);
 }
 
