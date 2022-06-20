@@ -648,3 +648,58 @@
     transform: translateY(4px);
 
 }
+
+#wakeup {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
+}
+
+#endOfGame {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
+}
+
+#fiveAM {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
+}
+
+#endYellowTestButton {
+    position: absolute;
+    left: 25%;
+    top: 22.5%;
+    width: 50%;
+    height: 55%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+}
+
+#endYellowTestButton:active {
+    transform: translateY(4px);
+}

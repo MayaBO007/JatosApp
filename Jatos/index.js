@@ -1,38 +1,4 @@
 
-// Date and time functions:
-// add zero in front of numbers < 10
-
-//session strart time:
-
-// const d = new Date();
-// let h = d.getHours();
-// let m = d.getMinutes();
-// let s = d.getSeconds();
-// let ms = d.getMilliseconds();
-// h = checkTime(h);
-// m = checkTime(m);
-// s = checkTime(s);
-// ms = checkTime(ms);
-// let startTime = h + ":" + m + ":" + s + ":" + ms;
-
-// let day = d.getDate();
-// let month = 1 + d.getMonth();
-// let year = d.getFullYear();
-// day = checkTime(day);
-// month = checkTime(month);
-// const startDate = day + ':' + month + ":" + year;
-// console.log(startTime);
-// console.log(- startTime)
-
-// function checkTime(i) {
-//     if (i < 10) { i = "0" + i };
-//     return i;
-// };
-
-
-
-//let today = getTodayStartTime();
-
 let todayHeb = ":היום הרווחת";
 let redCoinsHeb = ":מטבעות אדומים";
 let blueCoinsHeb = ":מטבעות כחולים";
