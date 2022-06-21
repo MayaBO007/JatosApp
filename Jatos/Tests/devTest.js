@@ -11,6 +11,8 @@ const allCorrectFirstPressDev = [];
 const allChoicesDev = [];
 
 const saveResponsesDev = {
+    sub_ID: sub_ID,
+    expDay: expDays.length + 1,
     correctRedPressDevtest: correctRedPressDevtest,
     correctBluePressDevtest: correctBluePressDevtest,
     incorrectRedPressDevtest: incorrectRedPressDevtest,

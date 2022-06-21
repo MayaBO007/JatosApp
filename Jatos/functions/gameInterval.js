@@ -1,5 +1,7 @@
 
 const saveResponses = {
+    sub_ID: sub_ID,
+    expDay: expDays.length + 1,
     correctRedPress: correctRedPress,
     correctBluePress: correctBluePress,
     incorrectRedPress: incorrectRedPress,
@@ -11,8 +13,8 @@ const saveResponses = {
     allCorrectFirstPress: allCorrectFirstPress,
     allChoices: allChoices
 };
-
 jatos.submitResultData(saveResponses);
+
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
 
@@ -109,7 +111,7 @@ function startTraining() {
                     clearInterval(sessionTimer);
                     resolve("doneDayTwo");
                 }, 10000);
-            };
+            }
             startInterval();
             msCount();
         };

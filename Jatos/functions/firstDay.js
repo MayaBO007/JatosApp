@@ -10,6 +10,23 @@ const allCorrectFirstPress = [];
 const allChoices = [];
 const criterion = [];
 
+const saveResponsesFirstDay = {
+    sub_ID: sub_ID,
+    expDay: expDays.length + 1,
+    correctRedPress: correctRedPress,
+    correctBluePress: correctBluePress,
+    incorrectRedPress: incorrectRedPress,
+    incorrectBluePress: incorrectBluePress,
+    redChoice: redChoice,
+    blueChoice: blueChoice,
+    allRedPresses: allRedPresses,
+    allBluePresses: allBluePresses,
+    allCorrectFirstPress: allCorrectFirstPress,
+    allChoices: allChoices,
+    criterion: criterion
+};
+jatos.submitResultData(saveResponsesFirstDay);
+
 
 //const allChoicesSliced = allChoices.slice(0, 20);
 // missed = choices - correct X - incorrect Y
@@ -181,7 +198,7 @@ async function startIntervalFirstDay() {
                                         };
 
                                     };
-                                    jatos.appendResultData(saveResponses);
+                                    jatos.appendResultData(saveResponsesFirstDay);
                                 }, 0.7 * 1000);// (Maximal carSpeed)*1000
                         };
                         let sessionTimer = setTimeout(function timeCount() {

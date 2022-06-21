@@ -1,13 +1,13 @@
-const correctRedPress = [];
-const correctBluePress = [];
-const incorrectRedPress = [];
-const incorrectBluePress = [];
-const redChoice = [];
-const blueChoice = [];
-const allRedPresses = [];
-const allBluePresses = [];
-const allCorrectFirstPress = [];
-const allChoices = [];
+// const correctRedPress = [];
+// const correctBluePress = [];
+// const incorrectRedPress = [];
+// const incorrectBluePress = [];
+// const redChoice = [];
+// const blueChoice = [];
+// const allRedPresses = [];
+// const allBluePresses = [];
+// const allCorrectFirstPress = [];
+// const allChoices = [];
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPresses.push(now);
@@ -15,10 +15,10 @@ document.getElementById("redButton").addEventListener("click", function () {
 document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
-let count = 0; // counter for iterations
+//let count = 0; // counter for iterations
 // 1=red, 2=blue buttons
-let buttonChoice = null;
-let sessionInterval = null;
+//let buttonChoice = null;
+//let sessionInterval = null;
 
 async function startInterval2Tests() {
     return new Promise(resolve => {
@@ -87,15 +87,25 @@ async function startInterval2Tests() {
                     };
 
                 };
-                //    jatos.appendResultData(saveResponses);
+                jatos.appendResultData(saveResponses);
             }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
-        let sessionTimer = setTimeout(function timeCount() {
-            document.getElementById("blueButton").style.display = "none";
-            document.getElementById("redButton").style.display = "none";
-            clearInterval(sessionInterval);
-            clearInterval(sessionTimer);
-            resolve("done1");
-        }, 10000);
+        if (intervalDone[0] != "done1") {
+            let sessionTimer = setTimeout(function timeCount() {
+                document.getElementById("blueButton").style.display = "none";
+                document.getElementById("redButton").style.display = "none";
+                clearInterval(sessionInterval);
+                clearInterval(sessionTimer);
+                resolve("done1");
+            }, saveResponsesFirstDay.criterion);
+        } else {
+            let sessionTimer = setTimeout(function timeCount() {
+                document.getElementById("blueButton").style.display = "none";
+                document.getElementById("redButton").style.display = "none";
+                clearInterval(sessionInterval);
+                clearInterval(sessionTimer);
+                resolve("done1");
+            }, 60000);
+        }
     });
 };

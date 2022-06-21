@@ -1,6 +1,27 @@
-const sub_ID = jatos.workerId;
-const expDays = [];
-// let sub_info = {"group" : groupNum, "firstDay" : startDate, lastDay : today, startTime: timeNow }
+const d = new Date();
+let h = d.getHours();
+let m = d.getMinutes();
+let s = d.getSeconds();
+let ms = d.getMilliseconds();
+h = checkTime(h);
+m = checkTime(m);
+s = checkTime(s);
+ms = checkTime(ms);
+let startTime = h + ":" + m + ":" + s + ":" + ms;
+
+let day = d.getDate();
+let month = 1 + d.getMonth();
+let year = d.getFullYear();
+day = checkTime(day);
+month = checkTime(month);
+const startDate = day + ':' + month + ":" + year;
+
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+};
+
 // jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
 const saveData = {
     sub_ID: sub_ID,
@@ -19,98 +40,116 @@ function timeline() {
             if (doneDay1 == "doneDay1") {
                 //show see you tomorrow msg
             } else {
-                let doneDay1 = await startIntervalFirstDay();
-                if (doneDay1 == "doneDay1") {
-                    showWinnings()
-                    expDays.push(updatedDates.fullDate);
-                    let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                    jatos.appendResultData(saveData);
+                let goFirst = async function () {
+                    let doneDay1 = await startIntervalFirstDay();
+                    if (doneDay1 == "doneDay1") {
+                        showWinnings()
+                        expDays.push(updatedDates.fullDate);
+                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                        jatos.appendResultData(saveData);
+                        setTimeou(timeline(), 900000);
+                    }
                 }
+                goFirst();
             }
         } else {
-            let doneInstructions = await startFirstDay();
-            if (doneInstructions == "doneInstructions") {
-                let doneDay1 = await startIntervalFirstDay();
-                if (doneDay1 == "doneDay1") {
-                    showWinnings();
-                    expDays.push(updatedDates.fullDate);
-                    sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                    jatos.appendResultData(saveData);
-                    setTimeout(() => { //set timeout for 5am tomorrow
-                        document.getElementById("wakeup").style.display = "inline";
-                        document.getElementById("wakeup").onclick = function () {
-                            let wakeup = 1;
-                            if (wakeup == 1) {
-                                document.getElementById("wakeup").style.display = "none";
-                                updatedDates = updateDates();
-                                if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                    wakeup = 0;
-                                    let doneDayTwo = await startTraining(); // add promise and resolve
-                                    if (doneDayTwo == "doneDayTwo") {
-                                        showWinnings();
-                                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                        expDays.push(updatedDates.fullDate);
-                                        jatos.appendResultData(saveData);
-                                        setTimeout(() => { //set timeout for 5am tomorrow
-                                            document.getElementById("wakeup").style.display = "inline";
-                                            document.getElementById("wakeup").onclick = function () {
-                                                let wakeup = 1;
-                                                if (wakeup == 1) {
-                                                    document.getElementById("wakeup").style.display = "none";
-                                                    updatedDates = updateDates();
-                                                    if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                                        wakeup = 0;
-                                                        let doneDayThree = await start2tests(); // add promise and resolve
-                                                        if (doneDayThree == "doneDayThree") {
-                                                            showWinnings();
-                                                            let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                                            jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                                            expDays.push(updatedDates.fullDate);
-                                                            jatos.appendResultData(saveData);
-                                                            setTimeout(() => { //set timeout for 5am tomorrow
-                                                                document.getElementById("wakeup").style.display = "inline";
-                                                                document.getElementById("wakeup").onclick = function () {
-                                                                    let wakeup = 1;
-                                                                    if (wakeup == 1) {
-                                                                        document.getElementById("wakeup").style.display = "none";
-                                                                        updatedDates = updateDates();
-                                                                        if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                                                            let doneDayFour = await startDevTest(); // add promise and resolve
-                                                                            if (doneDayFour == "doneDayFour") {
-                                                                                showWinnings()
-                                                                                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                                                                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                                                                expDays.push(updatedDates.fullDate);
-                                                                                jatos.appendResultData(saveData);
-                                                                                setTimeout(() => {
-                                                                                    document.getElementById("endOfGame").style.display = "inline";
-                                                                                }, 10000);
-                                                                            }
-                                                                        } else {
-                                                                            document.getElementById("endOfGame").style.display = "inline";
+            let goIns = async function () {
+                let doneInstructions = await startFirstDay();
+                if (doneInstructions == "doneInstructions") {
+                    let goOne = async function () {
+                        let doneDay1 = await startIntervalFirstDay();
+                        if (doneDay1 == "doneDay1") {
+                            showWinnings();
+                            expDays.push(updatedDates.fullDate);
+                            jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                            jatos.appendResultData(saveData);
+                            setTimeout(() => { //set timeout for 5am tomorrow
+                                document.getElementById("wakeup").style.display = "inline";
+                                document.getElementById("wakeup").onclick = function () {
+                                    let wakeup = 1;
+                                    if (wakeup == 1) {
+                                        document.getElementById("wakeup").style.display = "none";
+                                        updatedDates = updateDates();
+                                        if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                            wakeup = 0;
+                                            let goTwo = async function () {
+                                                let doneDayTwo = await startTraining(); // add promise and resolve
+                                                if (doneDayTwo == "doneDayTwo") {
+                                                    showWinnings();
+                                                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                                    expDays.push(updatedDates.fullDate);
+                                                    jatos.appendResultData(saveData);
+                                                    setTimeout(() => { //set timeout for 5am tomorrow
+                                                        document.getElementById("wakeup").style.display = "inline";
+                                                        document.getElementById("wakeup").onclick = function () {
+                                                            let wakeup = 1;
+                                                            if (wakeup == 1) {
+                                                                document.getElementById("wakeup").style.display = "none";
+                                                                updatedDates = updateDates();
+                                                                if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                                                    wakeup = 0;
+                                                                    let goThree = async function () {
+                                                                        let doneDayThree = await start2tests(); // add promise and resolve
+                                                                        if (doneDayThree == "doneDayThree") {
+                                                                            showWinnings();
+                                                                            jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                                                            expDays.push(updatedDates.fullDate);
+                                                                            jatos.appendResultData(saveData);
+                                                                            setTimeout(() => { //set timeout for 5am tomorrow
+                                                                                document.getElementById("wakeup").style.display = "inline";
+                                                                                document.getElementById("wakeup").onclick = function () {
+                                                                                    let wakeup = 1;
+                                                                                    if (wakeup == 1) {
+                                                                                        document.getElementById("wakeup").style.display = "none";
+                                                                                        updatedDates = updateDates();
+                                                                                        if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                                                                            let goFour = async function () {
+                                                                                                let doneDayFour = await startDevTest(); // add promise and resolve
+                                                                                                if (doneDayFour == "doneDayFour") {
+                                                                                                    showWinnings()
+                                                                                                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                                                                                    expDays.push(updatedDates.fullDate);
+                                                                                                    jatos.appendResultData(saveData);
+                                                                                                    setTimeout(() => {
+                                                                                                        document.getElementById("endOfGame").style.display = "inline";
+                                                                                                    }, 10000);
+                                                                                                }
+                                                                                            }
+                                                                                            goFour();
+                                                                                        } else {
+                                                                                            document.getElementById("endOfGame").style.display = "inline";
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }, timeToWait());
                                                                         }
                                                                     }
+                                                                    goThree()
+                                                                } else {
+                                                                    document.getElementById("endOfGame").style.display = "inline";
                                                                 }
-                                                            }, timeToWait());
+                                                            }
                                                         }
-                                                    } else {
-                                                        document.getElementById("endOfGame").style.display = "inline";
-                                                    }
+                                                    }, timeToWait());
                                                 }
                                             }
-                                        }, timeToWait());
+                                            goTwo();
+                                        }
+                                        else {
+                                            document.getElementById("endOfGame").style.display = "inline";
+                                        }
                                     }
-                                } else {
-                                    document.getElementById("endOfGame").style.display = "inline";
+
                                 }
-                            }
+
+                            }, timeToWait());
                         }
-                    }, timeToWait());
+                    }
+                    goOne();
                 }
+
             }
+            goIns();
         }
     } else if (updatedDates.fullDate.getDate() != updatedDates.yesterdayPlusOne.getDate()) { //|| yesterdayPlusOne.getDate() - fullDate.getDate() > 25 ) {
         if (updatedDates.fullDate.getDate() == updatedDates.yesterday.getDate()) {
@@ -123,117 +162,129 @@ function timeline() {
         if (0 < updatedDates.fullDate.getHours() & updatedDates.fullDate.getHours() < 5) {
             document.getElementById("fiveAM").style.display = "inline";
         } else if (expDays.length == 1) {
-            let doneDayTwo = await startTraining();
-            if (doneDayTwo == "doneDayTwo") {
-                showWinnings();
-                expDays.push(updatedDates.fullDate)
-                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                jatos.appendResultData(saveData);
-                setTimeout(() => { //set timeout for 5am tomorrow
-                    document.getElementById("wakeup").style.display = "inline";
-                    document.getElementById("wakeup").onclick = function () {
-                        let wakeup = 1;
-                        if (wakeup == 1) {
-                            document.getElementById("wakeup").style.display = "none";
-                            let updatedDates = updateDates();
-                            if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                wakeup = 0;
-                                let doneDayThree = await start2tests();
-                                if (doneDayThree == "doneDayThree") {
-                                    showWinnings();
-                                    expDays.push(updatedDates.fullDate);
-                                    let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                    jatos.appendResultData(saveData);
-                                    setTimeout(() => { //set timeout for 5am tomorrow 
-                                        document.getElementById("wakeup").style.display = "inline";
-                                        document.getElementById("wakeup").onclick = function () {
-                                            let wakeup = 1;
-                                            if (wakeup == 1) {
-                                                document.getElementById("wakeup").style.display = "none";
-                                                updatedDates = updatedDates();
-                                                if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                                    wakeup = 0;
-                                                    let doneDayFour = await startDevTest(); // add promise and resolve
-                                                    if (doneDayFour == "doneDayFour") {
-                                                        showWinnings();
-                                                        expDays.push(updatedDates.fullDate);
-                                                        let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                                        jatos.appendResultData(saveData);
-                                                        setTimeout(() => {
+            let goTwo2 = async function () {
+                let doneDayTwo = await startTraining();
+                if (doneDayTwo == "doneDayTwo") {
+                    showWinnings();
+                    expDays.push(updatedDates.fullDate)
+                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                    jatos.appendResultData(saveData);
+                    setTimeout(() => { //set timeout for 5am tomorrow
+                        document.getElementById("wakeup").style.display = "inline";
+                        document.getElementById("wakeup").onclick = function () {
+                            let wakeup = 1;
+                            if (wakeup == 1) {
+                                document.getElementById("wakeup").style.display = "none";
+                                let updatedDates = updateDates();
+                                if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                    wakeup = 0;
+                                    let goThree3 = async function () {
+                                        let doneDayThree = await start2tests();
+                                        if (doneDayThree == "doneDayThree") {
+                                            showWinnings();
+                                            expDays.push(updatedDates.fullDate);
+                                            jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                            jatos.appendResultData(saveData);
+                                            setTimeout(() => { //set timeout for 5am tomorrow 
+                                                document.getElementById("wakeup").style.display = "inline";
+                                                document.getElementById("wakeup").onclick = function () {
+                                                    let wakeup = 1;
+                                                    if (wakeup == 1) {
+                                                        document.getElementById("wakeup").style.display = "none";
+                                                        updatedDates = updatedDates();
+                                                        if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                                            wakeup = 0;
+                                                            let goFour4 = async function () {
+                                                                let doneDayFour = await startDevTest(); // add promise and resolve
+                                                                if (doneDayFour == "doneDayFour") {
+                                                                    showWinnings();
+                                                                    expDays.push(updatedDates.fullDate);
+                                                                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                                                    jatos.appendResultData(saveData);
+                                                                    setTimeout(() => {
+                                                                        document.getElementById("endOfGame").style.display = "inline";
+                                                                    }, 10000);
+                                                                }
+                                                            }
+                                                            goFour4();
+                                                        }
+                                                        else {
                                                             document.getElementById("endOfGame").style.display = "inline";
-                                                        }, 10000);
+                                                        }
                                                     }
                                                 }
-                                                else {
-                                                    document.getElementById("endOfGame").style.display = "inline";
-                                                }
-                                            }
+                                            }, timeToWait());
                                         }
-                                    }, timeToWait());
+                                    }
+                                    goThree3();
+                                }
+                                else {
+                                    document.getElementById("endOfGame").style.display = "inline";
                                 }
                             }
-                            else {
-                                document.getElementById("endOfGame").style.display = "inline";
-                            }
                         }
-                    }
-                }, timeToWait());
+                    }, timeToWait());
+                }
             }
+            goTwo2();
         }
 
         else if (expDays.length == 2) {
-            let doneDayThree = await start2tests(); // add promise and resolve
-            if (doneDayThree == "doneDayThree") {
-                showWinnings();
-                expDays.push(updatedDates.fullDate);
-                let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                jatos.appendResultData(saveData);
-                setTimeout(() => { //set timeout for 5am tomorrow 
-                    document.getElementById("wakeup").style.display = "inline";
-                    document.getElementById("wakeup").onclick = function () {
-                        let wakeup = 1;
-                        if (wakeup == 1) {
-                            document.getElementById("wakeup").style.display = "none";
-                            updatedDates = updatedDates();
-                            if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                                wakeup = 0;
-                                let doneDayFour = await startDevTest(); // add promise and resolve
-                                if (doneDayFour == "doneDayFour") {
-                                    showWinnings();
-                                    expDays.push(updatedDates.fullDate)
-                                    let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                                    jatos.appendResultData(saveData);
-                                    setTimeout(() => {
-                                        document.getElementById("endOfGame").style.display = "inline";
-                                    }, 10000);
+            let goThree33 = async function () {
+                let doneDayThree = await start2tests(); // add promise and resolve
+                if (doneDayThree == "doneDayThree") {
+                    showWinnings();
+                    expDays.push(updatedDates.fullDate);
+                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                    jatos.appendResultData(saveData);
+                    setTimeout(() => { //set timeout for 5am tomorrow 
+                        document.getElementById("wakeup").style.display = "inline";
+                        document.getElementById("wakeup").onclick = function () {
+                            let wakeup = 1;
+                            if (wakeup == 1) {
+                                document.getElementById("wakeup").style.display = "none";
+                                updatedDates = updatedDates();
+                                if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
+                                    wakeup = 0;
+                                    let goFour44 = async function () {
+                                        let doneDayFour = await startDevTest(); // add promise and resolve
+                                        if (doneDayFour == "doneDayFour") {
+                                            showWinnings();
+                                            expDays.push(updatedDates.fullDate)
+                                            jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                                            jatos.appendResultData(saveData);
+                                            setTimeout(() => {
+                                                document.getElementById("endOfGame").style.display = "inline";
+                                            }, 10000);
+                                        }
+                                    }
+                                    goFour44();
+                                }
+                                else {
+                                    document.getElementById("endOfGame").style.display = "inline";
                                 }
                             }
-                            else {
-                                document.getElementById("endOfGame").style.display = "inline";
-                            }
                         }
-                    }
-                }, timeToWait());
+                    }, timeToWait());
+                }
             }
+            goThree33();
         }
         else {
             if (updatedDates.fullDate.getDate() == updatedDates.yesterdayPlusOne.getDate()) {
-                let doneDayFour = await startDevTest(); // add promise and resolve
-                if (doneDayFour == "doneDayFour") {
-                    showWinnings();
-                    expDays.push(updatedDates.fullDate)
-                    let sub_info = { "group": groupNum, "firstDay": startDate, lastDay: updatedDates.today, startTime: updatedDates.timeNow }
-                    jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
-                    jatos.appendResultData(saveData);
-                    setTimeout(() => {
-                        document.getElementById("endOfGame").style.display = "inline";
-                    }, 10000);
+                let goFour444 = async function () {
+                    let doneDayFour = await startDevTest(); // add promise and resolve
+                    if (doneDayFour == "doneDayFour") {
+                        showWinnings();
+                        expDays.push(updatedDates.fullDate)
+                        jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
+                        jatos.appendResultData(saveData);
+                        setTimeout(() => {
+                            document.getElementById("endOfGame").style.display = "inline";
+                        }, 10000);
+                    }
                 }
+                goFour444();
             }
         }
 
@@ -241,49 +292,59 @@ function timeline() {
 }
 
 
-let todayHeb = ":היום הרווחת";
-let redCoinsHeb = ":מטבעות אדומים";
-let blueCoinsHeb = ":מטבעות כחולים";
-let seeYouTomorrowHeb = "(:!נתראה מחר";
+const todayHeb = ":היום הרווחת";
+const redCoinsHeb = ":מטבעות אדומים";
+const blueCoinsHeb = ":מטבעות כחולים";
+const seeYouTomorrowHeb = "(:!נתראה מחר";
 let howManyDays = [];
 
-let time = 0;
+
 function showWinnings() {
     let redWinsLength = correctRedPress.length + correctRedPressDevtest.length + correctRedPressYellow.length + correctRedPressSwitch.length;
     let blueWinsLength = correctBluePress.length + correctBluePressDevtest.length + correctBluePressSwitch.length + correctBluePressYellow.length;
-    document.getElementById("blueButton").style.display = "none";
-    document.getElementById("redButton").style.display = "none";
-    document.getElementById("endOfDayMessage").style.display = "inline";
-    document.getElementById("todayWins").innerHTML = todayHeb;
-    document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
-    document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
-    document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
-    howManyDays.push(1);
+    if (expDays > 3) {
+        document.getElementById("blueButton").style.display = "none";
+        document.getElementById("redButton").style.display = "none";
+        document.getElementById("endOfDayMessage").style.display = "inline";
+        document.getElementById("todayWins").innerHTML = todayHeb;
+        document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
+        document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
+        howManyDays.push(1);
+    } else {
+        document.getElementById("blueButton").style.display = "none";
+        document.getElementById("redButton").style.display = "none";
+        document.getElementById("endOfDayMessage").style.display = "inline";
+        document.getElementById("todayWins").innerHTML = todayHeb;
+        document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
+        document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
+        document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
+        howManyDays.push(1);
+    }
     //document.getElementById('endOfDayButton').style.display = "inline";
     // let studySessionData = { "dayFinished": howManyDays.length, "date": getTodayDate() };
     // jatos.setStudySessionData("subjects/" + sub_ID, studySessionData);
 };
 
-function START() {
-    //make sure not for first day:
-    document.getElementById("startPage").style.display = "inline";
-    document.getElementById("moneyCar").style.display = "inline";
-    setTimeout(() => {
-        document.getElementById("startPage").style.display = "none";
-        document.getElementById("moneyCar").style.display = "none";
-        let session = sessionNum()
-        if (session == 1) {
-            startFirstDay();
-        } else if (session == 2) {
-            startTraining();
-        } else if (session == 3) {
-            start2tests();
-        } else
-            startDevTest();
-    }, 1500);
-}
+// function START() {
+//     //make sure not for first day:
+//     document.getElementById("startPage").style.display = "inline";
+//     document.getElementById("moneyCar").style.display = "inline";
+//     setTimeout(() => {
+//         document.getElementById("startPage").style.display = "none";
+//         document.getElementById("moneyCar").style.display = "none";
+//         let session = sessionNum()
+//         if (session == 1) {
+//             startFirstDay();
+//         } else if (session == 2) {
+//             startTraining();
+//         } else if (session == 3) {
+//             start2tests();
+//         } else
+//             startDevTest();
+//     }, 1500);
+// }
 
-START();
+timeline();
 // ****************************************************************************************
 //  Listen to Orientation changes and handle them accordingly
 // ----------------------------------------------------------------------------------------

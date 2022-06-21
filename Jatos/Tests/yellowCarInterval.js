@@ -13,6 +13,8 @@ const allChoicesYellow = [];
 const howManyYellows = [];
 
 const saveResponsesYellow = {
+    sub_ID: sub_ID,
+    expDay: expDays.length + 1,
     correctRedPressYellow: correctRedPressYellow,
     correctBluePressYellow: correctBluePressYellow,
     incorrectRedPressYellow: incorrectRedPressYellow,
@@ -25,7 +27,7 @@ const saveResponsesYellow = {
     allChoicesYellow: allChoicesYellow
 };
 
-//jatos.submitResultData(saveResponsesYellow);
+jatos.submitResultData(saveResponsesYellow);
 
 document.getElementById("redButton").addEventListener("click", function () {
     allRedPressesYellow.push(now);
@@ -108,7 +110,7 @@ async function startIntervalYellow() {
                         }, carSpeed * 1000);
                     }
                 };
-                //jatos.appendResultData(saveResponsesYellow);
+                jatos.appendResultData(saveResponsesYellow);
             }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
         let sessionTimerYellow = setTimeout(function timeCountYellow() {
