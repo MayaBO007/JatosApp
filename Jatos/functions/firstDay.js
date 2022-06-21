@@ -11,8 +11,8 @@ const allChoices = [];
 const criterion = [];
 
 const saveResponsesFirstDay = {
-    sub_ID: sub_ID,
-    expDay: expDays.length + 1,
+    // sub_ID: sub_ID,
+    // expDay: expDays.length + 1,
     correctRedPress: correctRedPress,
     correctBluePress: correctBluePress,
     incorrectRedPress: incorrectRedPress,
@@ -25,7 +25,7 @@ const saveResponsesFirstDay = {
     allChoices: allChoices,
     criterion: criterion
 };
-jatos.submitResultData(saveResponsesFirstDay);
+//jatos.submitResultData(saveResponsesFirstDay);
 
 
 //const allChoicesSliced = allChoices.slice(0, 20);
@@ -42,9 +42,9 @@ document.getElementById("blueButton").addEventListener("click", function () {
 let binaryPress = [];
 // Time count function:
 function msCountfirstDay() {
-    setInterval(function setTimer() {
+    msIntr = setInterval(function setTimer() {
         now = now + 10;
-        if (now >= 10000) {
+        if (now >= 1000) {
             let zeroArray = new Array(allChoices.length - allCorrectFirstPress.length).fill(0);
             let oneArray = new Array(allCorrectFirstPress.length).fill(1);
             binaryPress = oneArray.concat(zeroArray);
@@ -117,108 +117,95 @@ let startGame = null;
 
 async function startIntervalFirstDay() {
     return new Promise(resolve => {
-        document.getElementById("ins12").style.display = "inline";
-        document.getElementById("startAfterInstructions").style.display = "inline";
-        document.getElementById("startAfterInstructions").onclick = function () {
-            let startGame = 1;
-            if (startGame == 1) {
-                document.getElementById("ins12").style.display = "none";
-                document.getElementById("startAfterInstructions").style.display = "none";
-                function startIntervalDayOne() {
-                    msCountfirstDay();
-                    document.getElementById("startButton").style.display = "inline";
-                    document.getElementById("redButton").style.display = "inline";
-                    document.getElementById("blueButton").style.display = "inline";
-                    document.getElementById("gameScreen").style.display = "inline";
-                    document.getElementById("startButton").onclick = function () {
-                        startClick = 1;
-                        if (startClick == 1) {
-                            document.getElementById("startButton").style.display = "none";
-                            sessionInterval = setInterval(
-                                function carMove() {
-                                    let choseCar = randColor();
-                                    let carSpeed = randSpeedCar();
-                                    reset_airplane();
-                                    buttonChoice = 0;
-                                    if (count >= 20) {
-                                        clearInterval(sessionInterval);
-                                        setTimeout(startInterval, 2000);
-                                        document.getElementById("airplane").style.display = "inline";
-                                        document.getElementById("airplane").style.animationPlayState = "running";
-                                        count = 0;
-                                    } else {
-                                        count++;
-                                        if (choseCar >= 0.5) {
-                                            document.getElementById("redCar").style.display = "inline";
-                                            document.getElementById("redCar").style.animationPlayState = "running";
-                                            document.getElementById("redCar").style.animationDuration = String(carSpeed) + "s";
-                                            document.getElementById("redButton").onclick = function () {
-                                                buttonChoice = buttonChoice + 1;
-                                                if (buttonChoice == 1) {
-                                                    correctRedPress.push(now);
-                                                    allCorrectFirstPress.push(now);
-                                                } else {
-                                                    correctRedPress.push(now);
-                                                }
-                                            };
-                                            document.getElementById("blueButton").onclick = function () {
-                                                buttonChoice = buttonChoice - 1;
-                                                if (buttonChoice <= -1) {
-                                                    incorrectBluePress.push(now);
-                                                }
-                                            };
-
-                                            setTimeout(() => {
-                                                reset_redCar();
-                                            }, carSpeed * 1000);
+        document.getElementById("startButton").style.display = "inline";
+        document.getElementById("redButton").style.display = "inline";
+        document.getElementById("blueButton").style.display = "inline";
+        document.getElementById("gameScreen").style.display = "inline";
+        document.getElementById("startButton").onclick = function () {
+            startClick = 1;
+            if (startClick == 1) {
+                msCountfirstDay();
+                document.getElementById("startButton").style.display = "none";
+                function startIntervalFirstDay() {
+                    sessionInterval = setInterval(
+                        function carMove() {
+                            let choseCar = randColor();
+                            let carSpeed = randSpeedCar();
+                            reset_airplane();
+                            buttonChoice = 0;
+                            if (count >= 20) {
+                                clearInterval(sessionInterval);
+                                setTimeout(startInterval, 2000);
+                                document.getElementById("airplane").style.display = "inline";
+                                document.getElementById("airplane").style.animationPlayState = "running";
+                                count = 0;
+                            } else {
+                                count++;
+                                if (choseCar >= 0.5) {
+                                    document.getElementById("redCar").style.display = "inline";
+                                    document.getElementById("redCar").style.animationPlayState = "running";
+                                    document.getElementById("redCar").style.animationDuration = String(carSpeed) + "s";
+                                    document.getElementById("redButton").onclick = function () {
+                                        buttonChoice = buttonChoice + 1;
+                                        if (buttonChoice == 1) {
+                                            correctRedPress.push(now);
+                                            allCorrectFirstPress.push(now);
                                         } else {
-                                            document.getElementById("blueCar").style.display = "inline";
-                                            document.getElementById("blueCar").style.animationPlayState = "running";
-                                            document.getElementById("blueCar").style.animationDuration = String(carSpeed) + "s";
-                                            document.getElementById("redButton").onclick = function () {
-                                                buttonChoice = buttonChoice - 1;
-                                                if (buttonChoice <= -1) {
-                                                    incorrectRedPress.push(now);
-                                                };
-                                            };
-                                            document.getElementById("blueButton").onclick = function () {
-                                                buttonChoice = buttonChoice + 1;
-                                                if (buttonChoice == 1) {
-                                                    correctBluePress.push(now);
-                                                    allCorrectFirstPress.push(now);
-                                                } else {
-                                                    correctBluePress.push(now);
-                                                }
+                                            correctRedPress.push(now);
+                                        }
+                                    };
+                                    document.getElementById("blueButton").onclick = function () {
+                                        buttonChoice = buttonChoice - 1;
+                                        if (buttonChoice <= -1) {
+                                            incorrectBluePress.push(now);
+                                        }
+                                    };
 
-                                            };
-
-                                            setTimeout(() => {
-                                                reset_blueCar();
-                                            }, carSpeed * 1000);
+                                    setTimeout(() => {
+                                        reset_redCar();
+                                    }, carSpeed * 1000);
+                                } else {
+                                    document.getElementById("blueCar").style.display = "inline";
+                                    document.getElementById("blueCar").style.animationPlayState = "running";
+                                    document.getElementById("blueCar").style.animationDuration = String(carSpeed) + "s";
+                                    document.getElementById("redButton").onclick = function () {
+                                        buttonChoice = buttonChoice - 1;
+                                        if (buttonChoice <= -1) {
+                                            incorrectRedPress.push(now);
                                         };
+                                    };
+                                    document.getElementById("blueButton").onclick = function () {
+                                        buttonChoice = buttonChoice + 1;
+                                        if (buttonChoice == 1) {
+                                            correctBluePress.push(now);
+                                            allCorrectFirstPress.push(now);
+                                        } else {
+                                            correctBluePress.push(now);
+                                        }
 
                                     };
-                                    jatos.appendResultData(saveResponsesFirstDay);
-                                }, 0.7 * 1000);// (Maximal carSpeed)*1000
-                        };
-                        let sessionTimer = setTimeout(function timeCount() {
-                            document.getElementById("blueButton").style.display = "none";
-                            document.getElementById("redButton").style.display = "none";
-                            clearInterval(sessionInterval);
-                            clearInterval(sessionTimer);
-                            resolve("done1");
-                        }, 10000);
-                    }
+
+                                    setTimeout(() => {
+                                        reset_blueCar();
+                                    }, carSpeed * 1000);
+                                };
+
+                            };
+                            //  jatos.appendResultData(saveResponsesFirstDay);
+                        }, 0.7 * 1000);// (Maximal carSpeed)*1000
+
+                    let sessionTimer = setTimeout(function timeCount() {
+                        document.getElementById("blueButton").style.display = "none";
+                        document.getElementById("redButton").style.display = "none";
+                        clearInterval(sessionInterval);
+                        clearInterval(sessionTimer);
+                        resolve("doneDayOne");
+
+                    }, 10000);
                 }
-                startIntervalDayOne();
+                startIntervalFirstDay();
+
             }
-
-            setTimeout(() => {
-                if (startGame == null) {
-                    startIntervalDayOne()
-                }
-            }, 900000);
         }
-
     })
 }

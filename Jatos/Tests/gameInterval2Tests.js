@@ -87,7 +87,7 @@ async function startInterval2Tests() {
                     };
 
                 };
-                jatos.appendResultData(saveResponses);
+                //  jatos.appendResultData(saveResponses);
             }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
         if (intervalDone[0] != "done1") {

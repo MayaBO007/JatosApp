@@ -38,15 +38,16 @@ window.addEventListener("orientationchange", function (event) {
         OrientationTimeStamp: event.timeStamp,
     });
 });
-// function showOnlyLandscapeMessage() {
-//     // get current html to determine relevant id for orientation switches
-//     if (logic.isCalledFromInstructions()) {
-//         var element_ID_to_Hide = settings.instructions_main_HTML_element;
-//     } else if (document.location.href.includes(settings.instructionsFileName)) { // if it is called from inside the iframe don't run it (unecessary)
-//         return
-//     } else if (!logic.isCalledFromInstructions()) {
-//         var element_ID_to_Hide = settings.App_main_HTML_element; // The commented parts around were relevant when instructions where not in an iframe
-//     }
+function showOnlyLandscapeMessage() {
+    // get current html to determine relevant id for orientation switches
+    if (logic.isCalledFromInstructions()) {
+        var element_ID_to_Hide = settings.instructions_main_HTML_element;
+    } else if (document.location.href.includes(settings.instructionsFileName)) { // if it is called from inside the iframe don't run it (unecessary)
+        return
+    } else if (!logic.isCalledFromInstructions()) {
+        var element_ID_to_Hide = settings.App_main_HTML_element; // The commented parts around were relevant when instructions where not in an iframe
+    }
+}
 // hide screen and show message:
 dom_helper.hide(element_ID_to_Hide)
 document.body.style.backgroundImage = 'none'
@@ -71,7 +72,7 @@ if (!document.getElementById("support_only_landscape_msg")) { // if the message 
 } else {
     dom_helper.show('support_only_landscape_box')
 }
-}
+
 function removeOnlyLandscapeMessage() {
     // get current html to determine relevant id for orientation switches
     if (logic.isCalledFromInstructions()) {

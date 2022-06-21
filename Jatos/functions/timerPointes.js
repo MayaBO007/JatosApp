@@ -1,36 +1,32 @@
-// function startTimer() {
-//     let todayHeb = ":היום הרווחת";
-//     let redCoinsHeb = ":מטבעות אדומים";
-//     let blueCoinsHeb = ":מטבעות כחולים";
-//     let seeYouTomorrowHeb = "(:!נתראה מחר";
-
-//     let time = null;
-//     let sessionTimer = setInterval(function timeCount() {
-//         if (time >= 100) {
-//             document.getElementById("blueButton").style.display = "none";
-//             document.getElementById("redButton").style.display = "none";
-//             clearInterval(sessionTimer);
-//             let redWinsLength = correctRedPress.length;
-//             let blueWinsLength = correctBluePress.length;
-//             document.getElementById("endOfDayMessage").style.display = "inline";
-//             document.getElementById("todayWins").innerHTML = todayHeb;
-//             document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
-//             document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
-//             document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
-//             //document.getElementById('endOfDayButton').style.display = "inline";
-//         } else {
-//             time++;
-//         }
-//     }, 1000);
-// };
-
 let now = null;
 function msCount() {
     setInterval(function setTimer() {
         now = now + 10;
     }, 10);
 };
+const d = new Date();
+let h = d.getHours();
+let m = d.getMinutes();
+let s = d.getSeconds();
+let ms = d.getMilliseconds();
+h = checkTime(h);
+m = checkTime(m);
+s = checkTime(s);
+ms = checkTime(ms);
+let startTime = h + ":" + m + ":" + s + ":" + ms;
 
+let day = d.getDate();
+let month = 1 + d.getMonth();
+let year = d.getFullYear();
+day = checkTime(day);
+month = checkTime(month);
+const startDate = day + ':' + month + ":" + year;
+
+
+function checkTime(i) {
+    if (i < 10) { i = "0" + i };
+    return i;
+};
 
 
 function getTodayStartTime() {
@@ -52,8 +48,8 @@ function getTodayDate() {
     let dayToday = todayStartDetails.getDate();
     let monthToday = 1 + todayStartDetails.getMonth();
     let yearToday = todayStartDetails.getFullYear();
-    dayToday = checkTime(day);
-    monthToday = checkTime(month);
+    dayToday = checkTime(dayToday);
+    monthToday = checkTime(monthToday);
     let today = dayToday + ':' + monthToday + ":" + yearToday;
     return (today);
 
@@ -80,9 +76,14 @@ function updateDates() {
     let fullDate = new Date();
     let timeNow = getTodayStartTime();
     let today = getTodayDate();
-    let yesterday = expDays.slice(-1);
-    yesterday = new Date(yesterday);
-    let yesterdayPlusOne = yesterday.setDate(yesterday.getDate() + 1);
-    yesterdayPlusOne = new Date(yesterdayPlusOne)
+    if (startDate !== getTodayDate()) {
+        let yesterday = expDays.slice(-1);
+        yesterday = new Date(yesterday);
+        let yesterdayPlusOne = yesterday.setDate(yesterday.getDate() + 1);
+        yesterdayPlusOne = new Date(yesterdayPlusOne)
+    } else {
+        yesterday = null;
+        yesterdayPlusOne = null
+    }
     return { fullDate, timeNow, today, yesterday, yesterdayPlusOne }
 }

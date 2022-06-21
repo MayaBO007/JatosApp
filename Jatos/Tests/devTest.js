@@ -11,8 +11,8 @@ const allCorrectFirstPressDev = [];
 const allChoicesDev = [];
 
 const saveResponsesDev = {
-    sub_ID: sub_ID,
-    expDay: expDays.length + 1,
+    //sub_ID: sub_ID,
+    //expDay: expDays.length + 1,
     correctRedPressDevtest: correctRedPressDevtest,
     correctBluePressDevtest: correctBluePressDevtest,
     incorrectRedPressDevtest: incorrectRedPressDevtest,
@@ -24,7 +24,7 @@ const saveResponsesDev = {
     allCorrectFirstPressDev: allCorrectFirstPressDev,
     allChoicesDev: allChoicesDev
 };
-jatos.submitResultData(saveResponsesDev);
+//jatos.submitResultData(saveResponsesDev);
 
 
 document.getElementById("redButton").addEventListener("click", function () {
@@ -111,7 +111,7 @@ async function startDevTest() {
                                 };
 
                             };
-                            jatos.appendResultData(saveResponsesDev);
+                            // jatos.appendResultData(saveResponsesDev);
                         }, 0.7 * 1000);// (Maximal carSpeed)*1000
                     let sessionTimer = setTimeout(function timeCount() {
                         document.getElementById("blueButton").style.display = "none";

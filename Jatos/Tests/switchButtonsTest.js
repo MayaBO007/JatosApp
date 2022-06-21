@@ -11,8 +11,8 @@ const allCorrectFirstPressSwitch = [];
 const allChoicesSwitch = [];
 
 const saveResponsesSwitch = {
-    sub_ID: sub_ID,
-    expDay: expDays.length + 1,
+    // sub_ID: sub_ID,
+    // expDay: expDays.length + 1,
     correctRedPressSwitch: correctRedPressSwitch,
     correctBluePressSwitch: correctBluePressSwitch,
     incorrectRedPressSwitch: incorrectRedPressSwitch,
