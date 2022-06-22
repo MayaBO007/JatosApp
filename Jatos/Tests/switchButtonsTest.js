@@ -40,13 +40,13 @@ async function startIntervalSwitch() {
         count = 0;
         sessionIntervalSwitch = setInterval(
             function carMove() {
-                let choseCar = randColor();
+                let choseCar = randColorSwitch();
                 let carSpeed = randSpeedCar();
                 reset_airplane();
                 buttonChoice = 0;
                 if (count >= 20) {
                     clearInterval(sessionIntervalSwitch);
-                    setTimeout(startIntervalSwitch, 2000);
+                    setTimeout(startIntervalSwitch, 1000);
                     document.getElementById("airplane").style.display = "inline";
                     document.getElementById("airplane").style.animationPlayState = "running";
                     count = 0;

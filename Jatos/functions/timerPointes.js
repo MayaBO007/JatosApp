@@ -1,7 +1,18 @@
+const expDays = [];
+const doneDays = {
+    doneInstructions: "",
+    doneDay1: "",
+    doneDay2: "",
+    doneDay3: "",
+    doneDay4: ""
+}
+
 let now = null;
 function msCount() {
-    setInterval(function setTimer() {
+    msIntAll = setInterval(function setTimer() {
         now = now + 10;
+        if (now >= 900000)
+            clearInterval(msIntAll);
     }, 10);
 };
 const d = new Date();
@@ -61,7 +72,7 @@ function timeToWait() {
     let mToday = todayEndDetails.getMinutes();
     let sToday = todayEndDetails.getSeconds();
     let msToday = todayEndDetails.getMilliseconds();
-    hChange = (29 - checkTime(hToday)) * 3600000;
+    hChange = (28 - checkTime(hToday)) * 3600000;
     mChange = (60 - checkTime(mToday)) * 60000;
     sChange = (60 - checkTime(sToday)) * 1000;
     msChange = (999 - checkTime(msToday));
@@ -87,3 +98,55 @@ function updateDates() {
     }
     return { fullDate, timeNow, today, yesterday, yesterdayPlusOne }
 }
+
+const todayHeb = ":היום הרווחת";
+const redCoinsHeb = ":מטבעות אדומים";
+const blueCoinsHeb = ":מטבעות כחולים";
+const seeYouTomorrowHeb = "(:!נתראה מחר";
+let howManyDays = [];
+
+
+function showWinnings() {
+    let redWinsLength = correctRedPress.length + correctRedPressDevtest.length + correctRedPressYellow.length + correctRedPressSwitch.length;
+    let blueWinsLength = correctBluePress.length + correctBluePressDevtest.length + correctBluePressSwitch.length + correctBluePressYellow.length;
+    if (doneDays.doneDay4 == "doneDayFour") {
+        document.getElementById("blueButton").style.display = "none";
+        document.getElementById("redButton").style.display = "none";
+        document.getElementById("endOfDayMessage").style.display = "inline";
+        document.getElementById("todayWins").innerHTML = todayHeb;
+        document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
+        document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
+        howManyDays.push(1);
+    } else {
+        document.getElementById("blueButton").style.display = "none";
+        document.getElementById("redButton").style.display = "none";
+        document.getElementById("endOfDayMessage").style.display = "inline";
+        document.getElementById("todayWins").innerHTML = todayHeb;
+        document.getElementById("redWins").innerHTML = redWinsLength + " " + redCoinsHeb;
+        document.getElementById("blueWins").innerHTML = blueWinsLength + " " + blueCoinsHeb;
+        document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
+        howManyDays.push(1);
+    }
+    setTimeout(() => {
+        document.getElementById("endOfDayMessage").style.display = "none";
+        document.getElementById("todayWins").innerHTML = '';
+        document.getElementById("redWins").innerHTML = '';
+        document.getElementById("blueWins").innerHTML = '';
+        document.getElementById("seeYouTomorrow").innerHTML = '';
+    }, 3000);
+    //document.getElementById('endOfDayButton').style.display = "inline";
+    // let studySessionData = { "dayFinished": howManyDays.length, "date": getTodayDate() };
+    // jatos.setStudySessionData("subjects/" + sub_ID, studySessionData);
+};
+
+function testsFirstInterval() {
+    if (saveResponsesFirstDay.criterion >= 8) {
+        intervalDuration = 420000;
+    } else {
+        intervalDuration = saveResponsesFirstDay.criterion;
+    }
+    return intervalDuration
+}
+
+let breaks = [];
+let countingCars = null;

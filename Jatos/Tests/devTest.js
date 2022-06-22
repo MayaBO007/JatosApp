@@ -36,6 +36,7 @@ document.getElementById("blueButton").addEventListener("click", function () {
 
 let startClickDev = null;
 async function startDevTest() {
+    breaks = 0
     return new Promise(resolve => {
         document.getElementById("redButton").style.display = "inline";
         document.getElementById("blueButton").style.display = "inline";
@@ -47,9 +48,14 @@ async function startDevTest() {
                 document.getElementById("startDevtestButton").style.display = "none";
                 function startIntervalDevtest() {
                     count = 0;
+                    reset_gif();
+                    document.getElementById("break").style.display = "none";
+                    document.getElementById("redButton").style.display = "inline";
+                    document.getElementById("blueButton").style.display = "inline";
+                    document.getElementById("gameScreen").style.display = "inline";
                     sessionInterval = setInterval(
                         function carMove() {
-                            let choseCar = randColor();
+                            let choseCar = randColorDev();
                             let carSpeed = randSpeedCar();
                             reset_airplane();
                             buttonChoice = 0;
@@ -109,6 +115,17 @@ async function startDevTest() {
                                         reset_blueCar();
                                     }, carSpeed * 1000);
                                 };
+                                if (countingCars >= 343 & breaks <= 3) {
+                                    clearInterval(sessionInterval);
+                                    document.getElementById("gameScreen").style.display = "none";
+                                    document.getElementById("redButton").style.display = "none";
+                                    document.getElementById("blueButton").style.display = "none";
+                                    document.getElementById("break").style.display = "inline";
+                                    document.getElementById("secondCountdown").style.display = "inline";
+                                    countingCars = 0;
+                                    setTimeout(startInterval, 30000);
+                                    breaks++;
+                                }
 
                             };
                             // jatos.appendResultData(saveResponsesDev);

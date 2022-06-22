@@ -19,7 +19,6 @@ function randColorYellow() { // 2 or 1 or 0
     let car = colorArry[Math.floor(Math.random() * colorArry.length)];
     if (car == 0) {
         redChoiceYellow.push(now);
-        allChoicesYellow.push(now);
     } else if (car == 1) {
         blueChoiceYellow.push(now)
     } else {

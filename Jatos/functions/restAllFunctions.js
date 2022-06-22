@@ -22,3 +22,9 @@ function reset_airplane() { // sets the red car back to its start point
     document.getElementById('airplane').style.display = "none";
 };
 
+function reset_gif() { // sets the red car back to its start point
+    document.getElementById('secondCountdown').style.display = "none";
+    document.getElementById('secondCountdown').src = "";
+    document.getElementById('secondCountdown').src = "pics/secondCountdown.gif"
+};
+

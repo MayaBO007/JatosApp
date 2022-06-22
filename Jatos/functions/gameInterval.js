@@ -26,9 +26,9 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePresses.push(now);
 });
 
-
 async function startTraining() {
     return new Promise(resolve => {
+        breaks = 0;
         document.getElementById("ins1").style.display = "none";
         document.getElementById("startButton").style.display = "inline";
         document.getElementById("redButton").style.display = "inline";
@@ -39,6 +39,11 @@ async function startTraining() {
             if (startClick == 1) {
                 document.getElementById("startButton").style.display = "none";
                 function startInterval() {
+                    reset_gif();
+                    document.getElementById("break").style.display = "none";
+                    document.getElementById("redButton").style.display = "inline";
+                    document.getElementById("blueButton").style.display = "inline";
+                    document.getElementById("gameScreen").style.display = "inline";
                     sessionInterval = setInterval(
                         function carMove() {
                             let choseCar = randColor();
@@ -51,8 +56,10 @@ async function startTraining() {
                                 document.getElementById("airplane").style.display = "inline";
                                 document.getElementById("airplane").style.animationPlayState = "running";
                                 count = 0;
+                                countingCars++;
                             } else {
                                 count++;
+                                countingCars++
                                 if (choseCar >= 0.5) {
                                     document.getElementById("redCar").style.display = "inline";
                                     document.getElementById("redCar").style.animationPlayState = "running";
@@ -103,19 +110,34 @@ async function startTraining() {
                                 };
 
                             };
-                            //   jatos.appendResultData(saveResponses);
+                            if (countingCars >= 343 & breaks <= 3) {
+                                clearInterval(sessionInterval);
+                                document.getElementById("gameScreen").style.display = "none";
+                                document.getElementById("redButton").style.display = "none";
+                                document.getElementById("blueButton").style.display = "none";
+                                document.getElementById("break").style.display = "inline";
+                                document.getElementById("secondCountdown").style.display = "inline";
+                                countingCars = 0;
+                                setTimeout(startInterval, 30000);
+                                breaks++;
+                            }
+                            //jatos.appendResultData(saveResponses);
                         }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
                     let sessionTimer = setTimeout(function timeCount() {
                         document.getElementById("blueButton").style.display = "none";
                         document.getElementById("redButton").style.display = "none";
+                        document.getElementById("break").style.display = "none";
                         clearInterval(sessionInterval);
                         clearInterval(sessionTimer);
                         resolve("doneDayTwo");
-                    }, 10000);
+                    }, 100000);
                 }
                 startInterval();
                 msCount();
+                //let fourMinClock = setTimeout(() => {
+
+                //  }, 20000);
             };
         }
     })

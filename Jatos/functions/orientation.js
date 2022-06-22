@@ -8,21 +8,19 @@ var screenInitialOrientation = checkInitialOrientation();
 
 // check upon entry if it is on portrait mode:
 
-let checkOrientation = async function () {
-    let isDone = await startInstructions();
-    if (isDone == "done") {
-        function checkInitialOrientation() {
-            if (screen.availWidth < screen.availHeight) {
-                showOnlyLandscapeMessage()
-                return 'landscape'
-            } else {
-                return 'portrait'
-            }
-        }
+// let checkOrientation = async function () {
+//     let isDone = await startInstructions();
+//     if (isDone == "doneInstructions") {
+function checkInitialOrientation() {
+    if (screen.availWidth < screen.availHeight) {
+        showOnlyLandscapeMessage()
+        return 'landscape'
+    } else {
+        return 'portrait'
     }
 }
 
-checkOrientation();
+
 
 window.addEventListener("orientationchange", function (event) {
     // if ortation is changed from the main portrait mode

@@ -41,8 +41,10 @@ async function start2tests() {
                                                 document.getElementById("redButton").style.display = "inline";
                                                 document.getElementById("blueButton").style.display = "inline";
                                                 let afterSwitchTest = async function () {
-                                                    let afterSwitch = await startInterval2Tests();
-                                                    if (afterSwitch == "done1") {
+                                                    let afterSwitch = await startInterval2Tests2();
+                                                    if (afterSwitch == "done4") {
+                                                        document.getElementById("blueButton").style.display = "none";
+                                                        document.getElementById("redButton").style.display = "none";
                                                         document.getElementById("startYellowTestButton").style.display = "inline";
                                                         document.getElementById("startYellowTestButton").onclick = function () {
                                                             let startClickYellow = 1;
@@ -53,16 +55,20 @@ async function start2tests() {
                                                                 let startYellow = async function () {
                                                                     let endYellowTest = await startIntervalYellow();
                                                                     if (endYellowTest == "done3") {
+                                                                        document.getElementById("blueButton").style.display = "none";
+                                                                        document.getElementById("redButton").style.display = "none";
                                                                         document.getElementById("endYellowTestButton").style.display = "inline";
                                                                         document.getElementById("endYellowTestButton").onclick = function () {
                                                                             let startClick2 = 1;
                                                                             if (startClick2 == 1) {
+                                                                                document.getElementById("endYellowTestButton").style.display = "none";
                                                                                 document.getElementById("redButton").style.display = "inline";
                                                                                 document.getElementById("blueButton").style.display = "inline";
                                                                                 document.getElementById("startButton").style.display = "none";
+                                                                                intervalDone.push("done4");
                                                                                 let endYellow = async function () {
-                                                                                    let doneTwoTests = await startInterval2Tests();
-                                                                                    if (doneTwoTests == done1) {
+                                                                                    let doneTwoTests = await startInterval2Tests2();
+                                                                                    if (doneTwoTests == "done4") {
                                                                                         resolve("doneDayThree");
                                                                                     }
                                                                                 }

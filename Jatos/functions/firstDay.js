@@ -56,6 +56,9 @@ function msCountfirstDay() {
             }
 
         }
+        else if (now >= 10000) {
+            clearInterval(msIntr);
+        }
     }, 10);
 
 };
@@ -117,6 +120,7 @@ let startGame = null;
 
 async function startIntervalFirstDay() {
     return new Promise(resolve => {
+        breaks = 0;
         document.getElementById("startButton").style.display = "inline";
         document.getElementById("redButton").style.display = "inline";
         document.getElementById("blueButton").style.display = "inline";
@@ -127,6 +131,11 @@ async function startIntervalFirstDay() {
                 msCountfirstDay();
                 document.getElementById("startButton").style.display = "none";
                 function startIntervalFirstDay() {
+                    reset_gif();
+                    document.getElementById("break").style.display = "none";
+                    document.getElementById("redButton").style.display = "inline";
+                    document.getElementById("blueButton").style.display = "inline";
+                    document.getElementById("gameScreen").style.display = "inline";
                     sessionInterval = setInterval(
                         function carMove() {
                             let choseCar = randColor();
@@ -189,6 +198,17 @@ async function startIntervalFirstDay() {
                                         reset_blueCar();
                                     }, carSpeed * 1000);
                                 };
+                                if (countingCars >= 343 & breaks <= 3) {
+                                    clearInterval(sessionInterval);
+                                    document.getElementById("gameScreen").style.display = "none";
+                                    document.getElementById("redButton").style.display = "none";
+                                    document.getElementById("blueButton").style.display = "none";
+                                    document.getElementById("break").style.display = "inline";
+                                    document.getElementById("secondCountdown").style.display = "inline";
+                                    countingCars = 0;
+                                    setTimeout(startInterval, 30000);
+                                    breaks++;
+                                }
 
                             };
                             //  jatos.appendResultData(saveResponsesFirstDay);

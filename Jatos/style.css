@@ -80,10 +80,10 @@
 
 #startDevtestButton {
     position: absolute;
-    left: 35%;
-    top: 25%;
-    width: 30%;
-    height: 45%;
+    left: 27.5%;
+    top: 20%;
+    width: 45%;
+    height: 60%;
     border: none;
     color: none;
     background-color: transparent;
@@ -228,7 +228,7 @@
     animation-play-state: paused;
     position: absolute;
     animation-name: airplaneMoving;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     display: none;
@@ -690,9 +690,9 @@
 
 #endYellowTestButton {
     position: absolute;
-    left: 25%;
+    left: 27.5%;
     top: 22.5%;
-    width: 50%;
+    width: 45%;
     height: 55%;
     border: none;
     color: none;
@@ -702,4 +702,31 @@
 
 #endYellowTestButton:active {
     transform: translateY(4px);
+}
+
+#break {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
+}
+
+#secondCountdown {
+
+    position: absolute;
+    left: 17%;
+    top: 32%;
+    width: 55%;
+    height: 60%;
+    border: none;
+    color: none;
+    background-color: transparent;
+    display: none;
+
 }

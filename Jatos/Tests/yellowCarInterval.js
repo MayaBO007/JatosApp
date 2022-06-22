@@ -36,12 +36,11 @@ document.getElementById("blueButton").addEventListener("click", function () {
     allBluePressesYellow.push(now);
 });
 
-let sessionIntervalYellow = null;
 
 async function startIntervalYellow() {
-    count = 0;
     return new Promise(resolve => {
-        sessionIntervalYellow = setInterval(
+
+        let sessionIntervalYellow = setInterval(
             function carMove() {
                 let choseCar = randColorYellow();
                 let carSpeed = randSpeedCar();
@@ -49,7 +48,7 @@ async function startIntervalYellow() {
                 buttonChoice = 0;
                 if (count >= 20) {
                     clearInterval(sessionIntervalYellow);
-                    setTimeout(startIntervalYellow, 2000);
+                    setTimeout(startIntervalYellow, 1000);
                     document.getElementById("airplane").style.display = "inline";
                     document.getElementById("airplane").style.animationPlayState = "running";
                     count = 0;
@@ -76,7 +75,7 @@ async function startIntervalYellow() {
                         };
                         setTimeout(() => {
                             reset_redCar();
-                        }, carSpeed * 1000);
+                        }, carSpeed * 999.9);
 
                     } else if (choseCar == 1) {
                         document.getElementById("blueCar").style.display = "inline";
@@ -97,23 +96,25 @@ async function startIntervalYellow() {
                                 correctBluePressYellow.push(now);
                             }
 
-                            setTimeout(() => {
-                                reset_blueCar();
-                            }, carSpeed * 1000);
+
                         };
+                        setTimeout(() => {
+                            reset_blueCar();
+                        }, carSpeed * 999.9);
                     } else {
                         document.getElementById("yellowCar").style.display = "inline";
                         document.getElementById("yellowCar").style.animationPlayState = "running";
+                        document.getElementById("yellowCar").style.animationDuration = "0.7s";
 
                         setTimeout(() => {
                             reset_yellowCar();
-                        }, carSpeed * 1000);
+                        }, 0.69 * 1000);
                     }
                 };
                 // jatos.appendResultData(saveResponsesYellow);
             }, 0.7 * 1000);// (Maximal carSpeed)*1000
 
-        let sessionTimerYellow = setTimeout(function timeCountYellow() {
+        let sessionTimerYellow = setTimeout(function timeCount() {
             document.getElementById("blueButton").style.display = "none";
             document.getElementById("redButton").style.display = "none";
             clearInterval(sessionIntervalYellow);
@@ -121,7 +122,8 @@ async function startIntervalYellow() {
             carNum = prompt("?כמה מכוניות צהובות ספרת", " ");
             howManyYellows.push(carNum);
             resolve("done3");
-        }, 20000);
+
+        }, 10000);
     });
 };
 
