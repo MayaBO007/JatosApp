@@ -175,7 +175,7 @@ async function startInterval2Tests2() {
             clearInterval(sessionInterval2Test2);
             clearInterval(sessionTimer2test2);
             resolve("done4");
-        }, 10000);
+        }, 120000);
 
     });
 };

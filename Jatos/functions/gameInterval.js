@@ -131,7 +131,7 @@ async function startTraining() {
                         clearInterval(sessionInterval);
                         clearInterval(sessionTimer);
                         resolve("doneDayTwo");
-                    }, 100000);
+                    }, 890000);
                 }
                 startInterval();
                 msCount();

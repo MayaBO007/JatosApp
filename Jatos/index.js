@@ -53,6 +53,10 @@ function timeline() {
                                     //jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                     // jatos.appendResultData(saveData);
                                     setTimeout(() => { //set timeout for 5am tomorrow
+                                        document.getElementById("todayWins").innerHTML = '';
+                                        document.getElementById("redWins").innerHTML = '';
+                                        document.getElementById("blueWins").innerHTML = '';
+                                        document.getElementById("seeYouTomorrow").innerHTML = '';
                                         document.getElementById("wakeup").style.display = "inline";
                                         document.getElementById("wakeup").onclick = function () {
                                             let wakeup = 1;
@@ -70,6 +74,10 @@ function timeline() {
                                                         expDays.push(updatedDates.fullDate);
                                                         // jatos.appendResultData(saveData);
                                                         setTimeout(() => { //set timeout for 5am tomorrow
+                                                            document.getElementById("todayWins").innerHTML = '';
+                                                            document.getElementById("redWins").innerHTML = '';
+                                                            document.getElementById("blueWins").innerHTML = '';
+                                                            document.getElementById("seeYouTomorrow").innerHTML = '';
                                                             document.getElementById("wakeup").style.display = "inline";
                                                             document.getElementById("wakeup").onclick = function () {
                                                                 let wakeup = 1;
@@ -89,6 +97,10 @@ function timeline() {
                                                                             expDays.push(updatedDates.fullDate);
                                                                             //jatos.appendResultData(saveData);
                                                                             setTimeout(() => { //set timeout for 5am tomorrow
+                                                                                document.getElementById("todayWins").innerHTML = '';
+                                                                                document.getElementById("redWins").innerHTML = '';
+                                                                                document.getElementById("blueWins").innerHTML = '';
+                                                                                document.getElementById("seeYouTomorrow").innerHTML = '';
                                                                                 document.getElementById("wakeup").style.display = "inline";
                                                                                 document.getElementById("wakeup").onclick = function () {
                                                                                     let wakeup = 1;
@@ -171,6 +183,10 @@ function timeline() {
                     //     jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                     //     jatos.appendResultData(saveData);
                     setTimeout(() => { //set timeout for 5am tomorrow
+                        document.getElementById("todayWins").innerHTML = '';
+                        document.getElementById("redWins").innerHTML = '';
+                        document.getElementById("blueWins").innerHTML = '';
+                        document.getElementById("seeYouTomorrow").innerHTML = '';
                         document.getElementById("wakeup").style.display = "inline";
                         document.getElementById("wakeup").onclick = function () {
                             let wakeup = 1;
@@ -188,6 +204,10 @@ function timeline() {
                                             //  jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                             //  jatos.appendResultData(saveData);
                                             setTimeout(() => { //set timeout for 5am tomorrow 
+                                                document.getElementById("todayWins").innerHTML = '';
+                                                document.getElementById("redWins").innerHTML = '';
+                                                document.getElementById("blueWins").innerHTML = '';
+                                                document.getElementById("seeYouTomorrow").innerHTML = '';
                                                 document.getElementById("wakeup").style.display = "inline";
                                                 document.getElementById("wakeup").onclick = function () {
                                                     let wakeup = 1;
@@ -205,8 +225,12 @@ function timeline() {
                                                                     // jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                                                     // jatos.appendResultData(saveData);
                                                                     setTimeout(() => {
+                                                                        document.getElementById("todayWins").innerHTML = '';
+                                                                        document.getElementById("redWins").innerHTML = '';
+                                                                        document.getElementById("blueWins").innerHTML = '';
+                                                                        document.getElementById("seeYouTomorrow").innerHTML = '';
                                                                         document.getElementById("endOfGame").style.display = "inline";
-                                                                    }, 10000);
+                                                                    }, 5000);
                                                                 }
                                                             }
                                                             goFour4();
@@ -243,6 +267,10 @@ function timeline() {
                     //   jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                     //   jatos.appendResultData(saveData);
                     setTimeout(() => { //set timeout for 5am tomorrow 
+                        document.getElementById("todayWins").innerHTML = '';
+                        document.getElementById("redWins").innerHTML = '';
+                        document.getElementById("blueWins").innerHTML = '';
+                        document.getElementById("seeYouTomorrow").innerHTML = '';
                         document.getElementById("wakeup").style.display = "inline";
                         document.getElementById("wakeup").onclick = function () {
                             let wakeup = 1;
@@ -260,8 +288,12 @@ function timeline() {
                                             //  jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                                             //  jatos.appendResultData(saveData);
                                             setTimeout(() => {
+                                                document.getElementById("todayWins").innerHTML = '';
+                                                document.getElementById("redWins").innerHTML = '';
+                                                document.getElementById("blueWins").innerHTML = '';
+                                                document.getElementById("seeYouTomorrow").innerHTML = '';
                                                 document.getElementById("endOfGame").style.display = "inline";
-                                            }, 10000);
+                                            }, 5000);
                                         }
                                     }
                                     goFour44();
@@ -287,8 +319,12 @@ function timeline() {
                         //  jatos.batchSession.add("/subjects/" + sub_ID, sub_info);
                         //  jatos.appendResultData(saveData);
                         setTimeout(() => {
+                            document.getElementById("todayWins").innerHTML = '';
+                            document.getElementById("redWins").innerHTML = '';
+                            document.getElementById("blueWins").innerHTML = '';
+                            document.getElementById("seeYouTomorrow").innerHTML = '';
                             document.getElementById("endOfGame").style.display = "inline";
-                        }, 10000);
+                        }, 5000);
                     }
                 }
                 goFour444();

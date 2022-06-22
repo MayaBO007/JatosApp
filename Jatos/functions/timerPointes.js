@@ -127,13 +127,13 @@ function showWinnings() {
         document.getElementById("seeYouTomorrow").innerHTML = seeYouTomorrowHeb;
         howManyDays.push(1);
     }
-    setTimeout(() => {
-        document.getElementById("endOfDayMessage").style.display = "none";
-        document.getElementById("todayWins").innerHTML = '';
-        document.getElementById("redWins").innerHTML = '';
-        document.getElementById("blueWins").innerHTML = '';
-        document.getElementById("seeYouTomorrow").innerHTML = '';
-    }, 3000);
+    // setTimeout(() => {
+    //     document.getElementById("endOfDayMessage").style.display = "none";
+    //     document.getElementById("todayWins").innerHTML = '';
+    //     document.getElementById("redWins").innerHTML = '';
+    //     document.getElementById("blueWins").innerHTML = '';
+    //     document.getElementById("seeYouTomorrow").innerHTML = '';
+    // }, 900000);
     //document.getElementById('endOfDayButton').style.display = "inline";
     // let studySessionData = { "dayFinished": howManyDays.length, "date": getTodayDate() };
     // jatos.setStudySessionData("subjects/" + sub_ID, studySessionData);

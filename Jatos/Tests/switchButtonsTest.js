@@ -111,7 +111,7 @@ async function startIntervalSwitch() {
             clearInterval(sessionIntervalSwitch);
             clearInterval(sessionTimerSwitch);
             resolve("done2");
-        }, 10000);
+        }, 60000);
     });
 };
 

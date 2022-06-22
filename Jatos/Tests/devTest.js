@@ -136,7 +136,7 @@ async function startDevTest() {
                         clearInterval(sessionInterval);
                         clearInterval(sessionTimer);
                         resolve("doneDayFour");
-                    }, 10000);
+                    }, 890000);
                 };
                 startIntervalDevtest();
                 msCount();

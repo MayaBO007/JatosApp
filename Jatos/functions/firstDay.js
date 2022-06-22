@@ -221,7 +221,7 @@ async function startIntervalFirstDay() {
                         clearInterval(sessionTimer);
                         resolve("doneDayOne");
 
-                    }, 10000);
+                    }, 890000);
                 }
                 startIntervalFirstDay();
 

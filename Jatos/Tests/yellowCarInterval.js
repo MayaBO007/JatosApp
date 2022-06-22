@@ -123,7 +123,7 @@ async function startIntervalYellow() {
             howManyYellows.push(carNum);
             resolve("done3");
 
-        }, 10000);
+        }, 60000);
     });
 };
 
